@@ -31,7 +31,7 @@ angular.module('kman', [
     $urlRouterProvider.otherwise('/');
 
 }])
-.run(['$location', '$rootScope', '$window', function($location, $rootScope, $window){
+.run(['$location', '$rootScope', '$window', '$http', function($location, $rootScope, $window, $http){
     var common = $rootScope.common = $rootScope.common || {
         active: {},
         user: JSON.parse($window.sessionStorage.user || $window.localStorage.user),
@@ -44,9 +44,10 @@ angular.module('kman', [
         },
         clearDatabase: function(){
             var self = this;
-            // api.debug.clearDatabase().success(function(){
-            //     self.logout();
-            // });
+            $http.post('/debug/cleardatabase').then(function(){
+                console.log('post success');
+                self.logout();
+            });
         }
     };
 
