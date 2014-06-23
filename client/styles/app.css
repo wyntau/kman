@@ -83,3 +83,8 @@ body {
   margin-left: 1px;
   margin-bottom: 1px;
 }
+
+.kman-name{
+  font-size: 32px;
+  font-weight: bold;
+}

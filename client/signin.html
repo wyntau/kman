@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Welcome to KOAN - Sign In, Sign Up or Learn More</title>
+    <title>Welcome to KMAN - Sign In, Sign Up or Learn More</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
@@ -40,6 +40,10 @@
     .social-signin a {
         margin-top: 10px;
     }
+    .kman-name{
+        font-size: 32px;
+        font-weight: bold;
+    }
     </style>
 </head>
 
@@ -47,17 +51,18 @@
     <div class="navbar navbar-default navbar-static-top">
         <div class="container visible-xs">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">
-                    <img class="brand-image" src="images/koan.png" alt="KOAN">
-                </a>
+                <div class="kman-name">KMAN</div>
+                <!-- <a class="navbar-brand" href="/">
+                    <img class="brand-image" src="images/koan.png" alt="KMAN">
+                </a> -->
             </div>
         </div>
         <div class="container ">
             <ul class="nav navbar-nav navbar-right">
-                <a type="button" href="https://github.com/soygul/koan" class="btn btn-success navbar-btn">
+                <a type="button" href="https://github.com/jeremial/kman" class="btn btn-success navbar-btn">
                     <strong>View on GitHub</strong>
                 </a>
-                <a type="button" href="https://github.com/soygul/koan/archive/master.zip" class="btn btn-primary navbar-btn">
+                <a type="button" href="https://github.com/jeremial/kman/archive/master.zip" class="btn btn-primary navbar-btn">
                     <strong>Download</strong>
                 </a>
             </ul>
@@ -67,12 +72,13 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="logo-align hidden-xs">
-                    <a href="/">
+                    <div class="kman-name">KMAN</div>
+                    <!-- <a href="/">
                         <img src="images/koan_large.png" alt="KOAN">
-                    </a>
+                    </a> -->
 
                     <h1 class="logo-info">
-                        KOAN (Koa, Angular, Node): Full stack JavaScript Web development boilerplate.
+                        KMAN Stack (Koa, MongoDB, Angular.js, Node.js): Full stack JavaScript Web development boilerplate.
                     </h1>
 
                     <div class="media">
@@ -81,6 +87,14 @@
                         </div>
                         <div class="media-body">
                             Koa framework provides the RESTful backend API, utilizing the harmony generators.
+                        </div>
+                    </div>
+                    <div class="media">
+                        <div class="pull-left">
+                            <img class="media-object" src="images/mongodb.png" alt="MongoDB">
+                        </div>
+                        <div class="media-body">
+                            MongoDB is our NoSQL database of choice in this stack and sample app.
                         </div>
                     </div>
                     <div class="media">
@@ -96,15 +110,7 @@
                             <img class="media-object" src="images/nodejs.png" alt="Node.js">
                         </div>
                         <div class="media-body" style="padding-top: 10px;">
-                            Node.js is super glue, runtime for the backend, built system for the front.
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="pull-left">
-                            <img class="media-object" src="images/mongodb.png" alt="MongoDB">
-                        </div>
-                        <div class="media-body">
-                            Finally, MongoDB is our NoSQL database of choice in this stack and sample app.
+                            Finally, Node.js is super glue, runtime for the backend, built system for the front.
                         </div>
                     </div>
                 </div>
@@ -114,7 +120,7 @@
 
                 <p>
                     Welcome to
-                    <strong>KOAN sample app</strong>. Please enter your account info.
+                    <strong>KMAN sample app</strong>. Please enter your account info.
                     <br>You can also sign in with your Facebook or Google account.
                 </p>
 
@@ -133,7 +139,7 @@
 
                     <div class="form-group">
                         <label for="email">Email address</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="chuck@koanjs.com">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="admin@kmanjs.com">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
@@ -159,7 +165,7 @@
         <hr>
         <footer>
             <p>
-                KOAN &copy; Teoman Soygul (MIT License) &middot; <a href="https://github.com/soygul/koan">GitHub Repo</a>
+                KMAN &copy; Jeremial Lau (MIT License) &middot; <a href="https://github.com/jeremial/kman">GitHub Repo</a>
             </p>
         </footer>
     </div>

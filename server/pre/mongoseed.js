@@ -33,23 +33,23 @@ module.exports = function(override){
                 }
                 var users = [
                     new User({
-                        email: 'teo@koanjs.com'
+                        email: 'admin@kmanjs.com'
                         , password: 'pass'
-                        , name: 'Teoman Soygul'
-                        , avatar: gravatar('teo@koanjs.com')
+                        , name: 'Kman Demo'
+                        , avatar: gravatar('admin@kmanjs.com')
                     })
                     , new User({
-                        email: 'chuck@koanjs.com'
+                        email: 'jeremial@kmanjs.com'
                         , password: 'pass'
-                        , name: 'Chuck Norris'
-                        , avatar: gravatar('chuck@koanjs.com')
+                        , name: 'Jeremial Lau'
+                        , avatar: gravatar('jeremial@kmanjs.com')
                     })
                 ];
 
                 var posts = [
                     new Post({
                         created_by: users[0]._id
-                        , content: 'Hi there! This is a sample post demonstrating a KOAN app. KOAN is a simple boilerplate for building full-stack JavaScript Web applications using Koa, AngularJS, and Node.js. It utilizes WebSockets to provide real-time communication between servers and clients. MongoDB is used for data persistence and Passport.js for social logins. There are also numerous Grunt tasks pre-bundled and configured to facilitate development and testing. You can open this site in multiple browser tabs and post something to see how real-time communication works. You can also browse the project’s GitHub page to start building KOAN apps yourself.'
+                        , content: 'Hi there! This is a sample post demonstrating a KMAN app. KMAN is a simple boilerplate for building full-stack JavaScript Web applications using Koa, AngularJS, and Node.js. It utilizes WebSockets to provide real-time communication between servers and clients. MongoDB is used for data persistence and Passport.js for social logins. There are also numerous Grunt tasks pre-bundled and configured to facilitate development and testing. You can open this site in multiple browser tabs and post something to see how real-time communication works. You can also browse the project’s GitHub page to start building KMAN apps yourself.'
                         , created_at: new Date()
                     })
                 ];
