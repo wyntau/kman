@@ -2,13 +2,14 @@ var Resource = require('koa-resource-router')
     , Post = require('../models/post')
     , User = require('../models/user')
     , authorize = require('../middles/authorize')
-    , mongoose = require('mongoose')
-    , ObjectId = mongoose.Types.ObjectId
+    , Promise = require('bluebird')
     ;
 
 module.exports = new Resource('posts', {
     index: function *(next){
-        var posts = yield Post.find().limit(15)
+        var posts = yield Post.find().limit(15).sort({
+            created_at: -1
+        })
         .populate({
             path: 'comments'
             , select: {
@@ -56,7 +57,19 @@ module.exports = new Resource('posts', {
 
         post = new Post(body);
 
-        yield post.save().exec();
+        post = yield (new Promise(function(resolve, reject){
+            post.save(function(err, post){
+                Post.populate(post, {
+                    path: 'created_by'
+                    , select: {
+                        name: 1
+                        , avatar: 1
+                    }
+                }).then(function(post){
+                    resolve(post);
+                });
+            });
+        }));
 
         this.status = 201;
         this.body = post;

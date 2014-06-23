@@ -1,9 +1,9 @@
 var Resource = require('koa-resource-router')
     , Comment = require('../models/comment')
+    , Post = require('../models/post')
     , postResource = require('./post')
-    , mongoose = require('mongoose')
     , authorize = require('../middles/authorize')
-    , ObjectId = mongoose.Types.ObjectId
+    , Promise = require('bluebird')
     ;
 
 var commentResource = new Resource('comments', {
@@ -20,7 +20,31 @@ var commentResource = new Resource('comments', {
 
         var comment = new Comment(body);
 
-        yield comment.save().exec();
+        yield Post
+        .findById(postId)
+        .exec()
+        .then(function(post){
+            post.comments.push(comment);
+            return new Promise(function(resolve, reject){
+                post.save(function(err, post){
+                    resolve(post);
+                });
+            });
+        });
+
+        comment = yield (new Promise(function(resolve, reject){
+            comment.save(function(err, comment){
+                Comment.populate(comment, {
+                    path: 'created_by'
+                    , select: {
+                        name: 1
+                        , avatar: 1
+                    }
+                }).then(function(comment){
+                    resolve(comment);
+                });
+            });
+        }));
 
         this.status = 201;
         this.body = comment;

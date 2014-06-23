@@ -3,7 +3,7 @@ var path = require('path')
 
     , domain = 'http://kmanjs.com'
 
-    , secret = 'secret key'
+    , secret = 'kmansecret'
 
     , rootPath = __dirname
     , clientDir = 'client'

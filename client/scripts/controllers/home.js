@@ -27,9 +27,8 @@ angular.module('kman')
             content: $scope.postBox.content,
             created_by: user._id
         });
-        post.$save()
-        .$promise
-        .success(function(post){
+
+        post.$save(function(post){
             $scope.postBox.content = '';
             $scope.postBox.disabled = false;
             post.commentBox = {
@@ -37,31 +36,31 @@ angular.module('kman')
                 disabled: false
             };
             $scope.posts.unshift(post);
-        })
-        .error(function(){
-            $scope.postBox.disabled = false;
         });
     };
 
-    $scope.createComment = function($index){
-        var post = $scope.posts[$index];
+    $scope.createComment = function($event, post){
+        if($event.keyCode !== 13){
+            return;
+        }
+
+        if(!post.commentBox.content.length || post.commentBox.disabled){
+            $event.preventDefault();
+            return;
+        }
 
         post.commentBox.disabled = true;
 
         var comment = new Comment({
             content: post.commentBox.content,
-            created_by: post._id
+            created_by: user._id,
+            belong_to: post._id
         });
 
-        comment.$save()
-        .$promise
-        .success(function(comment){
+        comment.$save(function(comment){
             post.commentBox.content = '';
             post.commentBox.disabled = false;
-            post.comments.unshift(comment);
-        })
-        .error(function(){
-            post.commentBox.disabled = false;
+            post.comments.push(comment);
         });
     };
 

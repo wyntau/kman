@@ -3,9 +3,10 @@
 angular.module('kman', [
     'ui.router',
     'monospaced.elastic',
-    'ngResource'
+    'ngResource',
+    'LocalStorageModule'
 ])
-.config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $stateProvider, $urlRouterProvider){
+.config(['$locationProvider', '$stateProvider', '$urlRouterProvider', '$httpProvider', 'localStorageServiceProvider', function($locationProvider, $stateProvider, $urlRouterProvider, $httpProvider, localStorageServiceProvider){
     $locationProvider.html5Mode(true);
 
     $stateProvider
@@ -29,6 +30,10 @@ angular.module('kman', [
         });
 
     $urlRouterProvider.otherwise('/');
+
+    $httpProvider.interceptors.push('HttpInterceptor');
+
+    localStorageServiceProvider.setPrefix('');
 
 }])
 .run(['$location', '$rootScope', '$window', '$http', function($location, $rootScope, $window, $http){
