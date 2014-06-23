@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="signin">
 
 <head>
     <meta charset="utf-8">
@@ -115,7 +115,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6" ng-controller="mainCtrl">
                 <h2>Sign In</h2>
 
                 <p>
@@ -124,7 +124,7 @@
                     <br>You can also sign in with your Facebook or Google account.
                 </p>
 
-                <form action="/signin" method="post" style="width: 50%">
+                <form method="post" style="width: 50%" ng-submit="login()">
                     <p class="social-signin">
                         <a class="btn btn-sm btn-social btn-facebook" href="/signin/facebook">
                             <i class="fa fa-facebook"></i> 
@@ -139,18 +139,18 @@
 
                     <div class="form-group">
                         <label for="email">Email address</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="admin@kmanjs.com">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" ng-model="email">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="pass">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" ng-model="password">
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" id="rememberme" checked>Remember me
+                            <input type="checkbox" id="rememberme" ng-model="remember">Remember me
                         </label>
                     </div>
-                    <p class="help-block" style="color: darkred; font-weight: bold;"></p>
+                    <p ng-if="error" ng-cloak class="help-block" style="color: darkred; font-weight: bold;">{{error}}</p>
                     <button type="submit" class="btn btn-default">Sign In</button>
                 </form>
                 <br>
@@ -170,32 +170,30 @@
         </footer>
     </div>
 
-    <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
     <script>
-    // send form data with AJAX and store the incoming access token before redirecting user to index page
-    $('form').submit(function(event) {
-        event.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: '/signin',
-            data: JSON.stringify({
-                email: $('#email').val(),
-                password: $('#password').val()
-            }),
-            contentType: 'application/json',
-            dataType: 'json',
-            success: function(data) {
-                var storage = $("#rememberme").is(':checked') ? window.localStorage : window.sessionStorage;
+    angular.module('signin', [])
+    .controller('mainCtrl', ['$scope', '$http', function($scope, $http){
+        $scope.email = 'admin@kmanjs.com';
+        $scope.password = 'pass';
+        $scope.remember = true;
+
+        $scope.login = function(){
+            $http.post('/signin', {
+                email: $scope.email,
+                password: $scope.password
+            }).success(function(data){
+                var storage = $scope.remember ? window.localStorage : window.sessionStorage;
+
                 storage.token = data.token;
                 storage.user = JSON.stringify(data.user);
+
                 window.location.replace('/');
-            },
-            error: function(res) {
-                $('form p.help-block').text(res.responseText);
-            }
-        });
-    });
+            }).error(function(data){
+                $scope.error = data;
+            });
+        };
+    }]);
     </script>
 </body>
 
