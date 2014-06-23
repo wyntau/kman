@@ -1,0 +1,141 @@
+<div class="message-box">
+    <form ng-submit="createPost($event)">
+        <textarea msd-elastic ng-model="postBox.content" class="form-control" name="message" placeholder="Type your post here..." ng-disabled="postBox.disabled"></textarea>
+
+        <div class="message-box-tools">
+            <input type="submit" class="btn btn-default btn-sm pull-right" value="Post">
+        </div>
+    </form>
+</div>
+
+<ul class="media-list posts">
+    <li class="media post" ng-repeat="post in posts" id="post_{{post._id}}">
+        <a href="#" class="pull-left">
+            <img class="media-object" ng-src="{{post.created_by.avatar}}" alt="">
+        </a>
+        <div class="media-body post-body">
+            <h5 class="media-heading">
+                <a href="#">{{post.created_by.name}}</a>
+                <span ng-if="post.to">
+                    <span class="glyphicon glyphicon-play"></span> <a href="#">{{post.to.name}}</a>
+                </span>
+            </h5>
+            {{post.content}}
+            <small class="post-tools">
+                {{post.created_at | date:'medium'}} &middot;
+                <span class="glyphicon glyphicon-{{post.to ? 'envelope' : 'globe'}}"></span>
+            </small>
+            <ul class="media-list post-comments">
+                <li class="media">
+                    <span class="arrow-up-small"></span>
+                </li>
+                <li class="media post-comment" ng-repeat="comment in post.comments">
+                    <a href="#" class="pull-left">
+                        <img class="media-object" ng-src="{{comment.created_by.avatar}}" alt="">
+                    </a>
+                    <div class="media-body story-comment-body">
+                        <small><a href="#" class="bold">{{comment.created_by.name}}</a> {{comment.content}}</small>
+                        <small class="post-comment-tools">
+                            {{comment.created_at | date:'short'}}
+                        </small>
+                    </div>
+                </li>
+                <li class="media post-comment comment-box">
+                    <a href="#" class="pull-left">
+                        <img class="media-object" ng-src="{{common.user.avatar}}" alt="">
+                    </a>
+                    <div class="media-body post-comment-body">
+                        <textarea msd-elastic ng-model="post.commentBox.content" ng-keypress="createComment($event, post)" ng-disabled="post.commentBox.disabled" class="form-control" placeholder="Write a comment..."></textarea>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </li>
+</ul>
+
+<style type="text/css">
+/* Layout */
+ .posts li {
+    border-top: solid 1px #E9E9E9;
+}
+.post {
+    margin-top: 0;
+    padding-bottom: 18px;
+    padding-top: 18px;
+}
+.post img {
+    height: 50px;
+    width: 50px;
+}
+.post-body h5 {
+    margin: 0;
+}
+.post-tools {
+    color: grey;
+    display: block;
+}
+.post-comments li {
+    background-color: #edeff4;
+    border: none;
+}
+.post-comments li:first-child {
+    background: none;
+    line-height: 5px;
+}
+.post-comments li:nth-child(2) {
+    margin-top: 0;
+}
+.post-comments li:nth-child(n + 3) {
+    margin-top: 1px;
+}
+.post-comment {
+    line-height: 13px;
+    padding: 5px 5px 4px 5px;
+}
+.post-comment img {
+    height: 32px;
+    width: 32px;
+}
+.post-comment > .pull-left {
+    margin-right: 8px;
+}
+.post-comment .comment-box {
+}
+.post-comment-body textarea {
+    resize: vertical;
+    height: 20px;
+    width: 75%;
+    margin: 0;
+    padding-top: 1px;
+    padding-bottom: 0;
+    font-size: 12px;
+    border-radius: 2px;
+}
+.post-comment-tools {
+    color: gray;
+    display: block;
+    line-height: 16px;
+    padding-top: 2px;
+}
+/* Message box */
+ .message-box {
+    background-color: #fdfdfd;
+    border-radius: 7px;
+}
+.message-box form {
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+.message-box form textarea {
+    resize: vertical;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 65px;
+}
+.message-box-tools {
+    height: 31px;
+}
+</style>

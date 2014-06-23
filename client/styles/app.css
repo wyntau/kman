@@ -1,0 +1,85 @@
+/*----------------------------------------------------------------------
+/* Bootstrap overrides
+/*---------------------------------------------------------------------*/
+
+/* Top Navigation */
+
+.navbar .brand-image {
+  margin-top: -10px;
+  margin-bottom: -10px;
+}
+
+.navbar .dropdown-toggle img {
+  width: 23px;
+  height: 23px;
+  margin-top: -3px;
+  margin-bottom: -2px;
+}
+
+/* Side Navigation */
+
+.sidenav > li > a {
+  padding: 5px 15px;
+}
+
+/* Make sure that we're always taking up enough space on the screen. */
+/* ToDo: This shouldn't be necessary once we have all the content in place. */
+
+html, body, .container {
+  height: 85%;
+}
+
+.row {
+  min-height: 100%;
+}
+
+/*----------------------------------------------------------------------
+ * Common styles
+ *---------------------------------------------------------------------*/
+
+/* Typography */
+
+.centered {
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.summary {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Layout */
+
+body {
+  padding-top: 70px;
+}
+
+.block {
+  display: block;
+}
+
+/*----------------------------------------------------------------------
+ * Widgets
+ *---------------------------------------------------------------------*/
+
+/* User online indicator */
+
+.online-indicator {
+  background-color: lightgrey;
+  height: 7px;
+  width: 7px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-right: -1px;
+  margin-left: 1px;
+  margin-bottom: 1px;
+}

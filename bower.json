@@ -1,0 +1,36 @@
+{
+  "name": "kman",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Jeremial/kman",
+  "authors": [
+    "Jeremial <jeremial90@gmail.com>"
+  ],
+  "description": "Koa + MongoDB + Angular.js + Node.js",
+  "main": "app.js",
+  "keywords": [
+    "Koa",
+    "MongoDB",
+    "Angular.js",
+    "Node.js"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.18",
+    "jquery": "~2.1.1",
+    "font-awesome": "~4.1.0",
+    "bootstrap": "~3.1.1",
+    "bootstrap-social": "~4.5.1",
+    "angular-resource": "~1.2.18",
+    "angular-ui-router": "~0.2.10",
+    "angular-elastic": "~2.3.5",
+    "lodash": "~2.4.1"
+  }
+}
