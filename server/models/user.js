@@ -4,6 +4,8 @@ var mongoose = require('mongoose')
 
 var User = Schema({
     email: String
+    , platformId: String
+    , platform: String
     , password: String
     , name: String
     , avatar: String

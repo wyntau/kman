@@ -28,11 +28,11 @@ var path = require('path')
     , devDBName = 'kmandev'
     , testDBName = 'kmantest'
 
-    , googleClientId = '280611452741-apjn650lstej7sc5cm0v4u3e2cr07imm.apps.googleusercontent.com'
+    , googleClientID = '280611452741-apjn650lstej7sc5cm0v4u3e2cr07imm.apps.googleusercontent.com'
     , googleClientSecret = 'v5xQ3pCT2KVkWnTSxk7aCVfF'
     , googleCallbackPath = '/signin/google/callback'
 
-    , facebookClientId = '644645675629755'
+    , facebookClientID = '644645675629755'
     , facebookClientSecret = '1037128b8458bc4599496f93918d4887'
     , facebookCallbackPath = '/signin/facebook/callback'
 
@@ -41,6 +41,7 @@ var path = require('path')
 var baseConfig = {
     secret: secret
     , env: process.env.NODE_ENV
+    , domain: domain
     , app: {
         root: rootPath
         , client: clientPath
@@ -73,14 +74,14 @@ var envConfig = {
         }
         , oauth: {
             facebook: {
-                clientId: facebookClientId
+                clientID: facebookClientID
                 , clientSecret: facebookClientSecret
-                , callbackUrl: 'http://localhost:' + devPort + facebookCallbackPath
+                , callbackURL: 'http://localhost:' + devPort + facebookCallbackPath
             }
             , google: {
-                clientId: googleClientId
+                clientID: googleClientID
                 , clientSecret: googleClientSecret
-                , callbackUrl: 'http://localhost:' + devPort + googleCallbackPath
+                , callbackURL: 'http://localhost:' + devPort + googleCallbackPath
             }
         }
     }
@@ -109,14 +110,14 @@ var envConfig = {
         }
         , oauth: {
             facebook: {
-                clientId: facebookClientId
+                clientID: facebookClientID
                 , clientSecret: facebookClientSecret
-                , callbackUrl: domain + facebookCallbackPath
+                , callbackURL: domain + facebookCallbackPath
             }
             , google: {
-                clientId: googleClientId
+                clientID: googleClientID
                 , clientSecret: googleClientSecret
-                , callbackUrl: domain + googleCallbackPath
+                , callbackURL: domain + googleCallbackPath
             }
         }
     }
