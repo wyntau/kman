@@ -25,26 +25,21 @@ var commentResource = new Resource('comments', {
         .exec()
         .then(function(post){
             post.comments.push(comment);
-            return new Promise(function(resolve, reject){
-                post.save(function(err, post){
-                    resolve(post);
-                });
-            });
+            return Promise.promisify(post.save, post)();
         });
 
-        comment = yield (new Promise(function(resolve, reject){
-            comment.save(function(err, comment){
-                Comment.populate(comment, {
+        comment = yield Promise.promisify(comment.save, comment)()
+            .then(function(result){
+                var comment = result[0];
+
+                return Comment.populate(comment, {
                     path: 'created_by'
                     , select: {
                         name: 1
                         , avatar: 1
                     }
-                }).then(function(comment){
-                    resolve(comment);
                 });
             });
-        }));
 
         this.status = 201;
         this.body = comment;

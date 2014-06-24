@@ -57,19 +57,17 @@ module.exports = new Resource('posts', {
 
         post = new Post(body);
 
-        post = yield (new Promise(function(resolve, reject){
-            post.save(function(err, post){
-                Post.populate(post, {
+        post = yield Promise.promisify(post.save, post)()
+            .then(function(result){
+                var post = result[0];
+                return Post.populate(post, {
                     path: 'created_by'
                     , select: {
                         name: 1
                         , avatar: 1
                     }
-                }).then(function(post){
-                    resolve(post);
                 });
             });
-        }));
 
         this.status = 201;
         this.body = post;
