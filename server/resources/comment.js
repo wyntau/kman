@@ -14,8 +14,8 @@ var commentResource = new Resource('comments', {
             , comment
             ;
 
-        body.belong_to = postId; //new ObjectId(postId);
-        body.created_by = userId; //new ObjectId(userId)
+        body.belong_to = postId;
+        body.created_by = userId;
         body.created_at = new Date();
 
         var comment = new Comment(body);
