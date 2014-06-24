@@ -38,10 +38,10 @@ module.exports = (grunt)->
             dev:
                 script: 'app.js'
                 options:
-                    nodeArgs: ['--debug', '--harmony']
+                    nodeArgs: ['--harmony']
                     ignore: ['node_modules/**', 'client/**']
                     callback: (nodemon)->
-                        fs.writeSync '.nodemon', 'started'
+                        fs.writeFileSync '.nodemon', 'started'
                         nodemon.on 'log', (event)->
                             console.log event.colour
                         nodemon.on 'restart', ->
@@ -220,6 +220,12 @@ module.exports = (grunt)->
                 dest: 'client/.tmp/styles'
                 src: '**/*.css'
 
+            bower_components:
+                expand: true
+                cwd: 'client'
+                src: 'bower_components/**/*'
+                dest: 'dist/client'
+
             fontawesomefonts:
                 expand: true
                 cwd: 'client/bower_components/font-awesome'
@@ -253,7 +259,5 @@ module.exports = (grunt)->
         'htmlmin'
     ]
 
-
-
-
+    @registerTask 'dev', ['concurrent']
 
