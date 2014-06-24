@@ -1,7 +1,4 @@
-var mongoose = require('mongoose')
-    , ObjectId = mongoose.Types.ObjectId
-    , Promise = require('bluebird')
-    , async = require('async')
+var Promise = require('bluebird')
     , User = require('../models/user')
     , Post = require('../models/post')
     , Comment = require('../models/comment')
