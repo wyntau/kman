@@ -4,7 +4,12 @@ var jwt = require('koa-jwt')
     , debug = config.env === 'development'
     ;
 
-module.exports = function(passthrough){
+module.exports = jwt({
+    secret: secret
+    , debug: debug
+});
+
+module.exports.authorize = function(passthrough){
     return jwt({
         secret: secret
         , debug: debug

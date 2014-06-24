@@ -46,7 +46,7 @@ module.exports = new Resource('posts', {
 
         this.body = posts;
     }
-    , create: [authorize(), function *(next){
+    , create: [authorize, function *(next){
         var body = this.request.body
             , userId = this.user._id
             , post

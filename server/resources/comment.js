@@ -7,7 +7,7 @@ var Resource = require('koa-resource-router')
     ;
 
 var commentResource = new Resource('comments', {
-    create: [authorize(), function *(next){
+    create: [authorize, function *(next){
         var body = this.request.body
             , postId = this.params.post
             , userId = this.user._id
