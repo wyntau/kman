@@ -21,10 +21,14 @@
     <title ng-bind="common.title">KMAN</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, minimal-ui">
 
+    <!-- build:css /styles/vendor.css -->
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
+    <!-- endbuild -->
 
+    <!-- build:css /styles/main.css -->
     <link rel="stylesheet" href="/styles/app.css">
+    <!-- endbuild -->
 </head>
 
 <body>
@@ -139,6 +143,7 @@
         </footer>
     </div>
 
+    <!-- build:js /scripts/vendor.js -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
@@ -146,14 +151,16 @@
     <script src="/bower_components/angular-local-storage/angular-local-storage.js"></script>
     <script src="/bower_components/angular-elastic/elastic.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- endbuild -->
 
-
+    <!-- build:js({client/.tmp,client}) /scripts/scripts.js -->
     <script src="/scripts/app.js"></script>
     <script src="/scripts/services/comment.js"></script>
     <script src="/scripts/services/post.js"></script>
     <script src="/scripts/services/httpinterceptor.js"></script>
     <script src="/scripts/controllers/home.js"></script>
     <script src="/scripts/controllers/profile.js"></script>
+    <!-- endbuild -->
 </body>
 
 </html>
