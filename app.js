@@ -3,33 +3,26 @@ var http = require('http')
     , favi = require('koa-favi')
     , logger = require('koa-logger')
     , mount = require('koa-mount')
-    , serve = require('koa-static')
     , minifier = require('koa-html-minifier')
-    , co = require('co')
-
     , mongoose = require('mongoose')
 
     , mongoseed = require('./server/pre/mongoseed')
-
     , assertsApp = require('./server/asserts')
     , renderApp = require('./server/render')
     , apiApp = require('./server/api')
-
     // , socket = require('./server/socket')
-
     , config = require('./config')
 
     , app = koa()
-
     , server
 
     ;
 
-exports.init = co(function *(){
+exports.init = function(){
     mongoose.connect(config.mongo.url);
-    yield mongoseed();
-
-    app
+    mongoseed()
+    .then(function(){
+        app
         .use(favi())
         .use(logger())
         .use(minifier({
@@ -42,8 +35,9 @@ exports.init = co(function *(){
         .listen(config.app.port)
         ;
 
-    console.log('app is listening port', config.app.port);
-});
+        console.log('app is listening port', config.app.port);
+    });
+};
 
 if(!module.parent){
     exports.init();

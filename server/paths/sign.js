@@ -4,7 +4,6 @@ var config = require('../../config')
     , only = require('only')
     , request = require('co-request')
     , qs = require('querystring')
-    , co = require('co')
     , gravatar = require('gravatar').url
     ;
 
