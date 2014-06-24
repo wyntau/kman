@@ -52,7 +52,7 @@ module.exports = new Resource('posts', {
             , post
             ;
 
-        body.created_by = userId; //new ObjectId(userId);
+        body.created_by = userId;
         body.created_at = new Date();
 
         post = new Post(body);

@@ -9,28 +9,20 @@ var mongoose = require('mongoose')
     ;
 
 module.exports = function(override){
-    return new Promise(function(resolve, reject){
-        User.count().exec()
+
+    return User
+        .count()
+        .exec()
         .then(function(length){
             if(!override && length !== 0){
-                resolve();
-                return;
+                return Promise.resolve('not override');
             }
-            async.parallel([
-                function(cbk){
-                    User.remove({},cbk);
-                }
-                , function(cbk){
-                    Comment.remove({}, cbk);
-                }
-                , function(cbk){
-                    Post.remove({}, cbk);
-                }
-            ], function(err){
-                if(err){
-                    reject(err);
-                    return;
-                }
+            return Promise.all([
+                Promise.promisify(User.remove, User)({})
+                , Promise.promisify(Comment.remove, Comment)({})
+                , Promise.promisify(Post.remove, Post)({})
+            ])
+            .then(function(){
                 var users = [
                     new User({
                         email: 'admin@kmanjs.com'
@@ -76,26 +68,17 @@ module.exports = function(override){
                 var all = [];
 
                 users.forEach(function(user){
-                    all.push(user);
+                    all.push(Promise.promisify(user.save, user)());
                 });
                 posts.forEach(function(post){
-                    all.push(post);
+                    all.push(Promise.promisify(post.save, post)());
                 });
                 comments.forEach(function(comment){
-                    all.push(comment);
+                    all.push(Promise.promisify(comment.save, comment)());
                 });
 
-                async.each(all, function(item, cbk){
-                    item.save(cbk);
-                }, function(err){
-                    if(err){
-                        reject(err);
-                        return;
-                    }
-                    resolve();
-                });
+                return Promise.all(all);
             });
         });
-    });
 };
 
