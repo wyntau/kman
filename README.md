@@ -1,6 +1,8 @@
 ## KMAN
 <strong>K</strong>oa + <strong>M</strong>ongoDB  + <strong>A</strong>ngular.js + <strong>N</strong>ode.js
 
+A starting point for writing AngularJS apps backed by a Koa-powered node.js server.
+
 ### Requirements
 1. MongoDB
 2. node >= 0.11.9
