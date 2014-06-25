@@ -5,7 +5,7 @@
 1. MongoDB
 2. node >= 0.11.9
 
-### Install
+### For Develop
 
     npm install
     bower install
@@ -14,6 +14,12 @@
     node --harmony app.js
 
     open http://localhost:3000
+
+### For Deploy
+
+    npm install --production
+    export NODE_ENV=production
+    node --harmony app.js
 
 ### LICENSE
 MIT
