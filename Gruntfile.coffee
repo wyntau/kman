@@ -86,6 +86,16 @@ module.exports = (grunt)->
                 '.sass-cache'
             ]
 
+        wiredep:
+            html:
+                src: ['client/index.html']
+                exclude: ['bootstrap-social']
+                fileTypes:
+                    html:
+                        replace:
+                            js: '<script src="/{{filePath}}"></script>'
+                            css:'<link href="/{{filePath}}" />'
+
         autoprefixer:
             options:
                 browsers: ['last 1 version']
@@ -245,6 +255,7 @@ module.exports = (grunt)->
 
     @registerTask 'build', [
         'clean'
+        'wiredep'
         'useminPrepare'
         'compass:dist'
         'autoprefixer'

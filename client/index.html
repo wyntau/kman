@@ -22,8 +22,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, minimal-ui">
 
     <!-- build:css /styles/vendor.css -->
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
+    <!-- bower:css -->
+    <link href="/bower_components/font-awesome/css/font-awesome.css" />
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:css /styles/main.css -->
@@ -144,13 +146,15 @@
     </div>
 
     <!-- build:js /scripts/vendor.js -->
+    <!-- bower:js -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
-    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="/bower_components/angular-resource/angular-resource.js"></script>
-    <script src="/bower_components/angular-local-storage/angular-local-storage.js"></script>
-    <script src="/bower_components/angular-elastic/elastic.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/bower_components/angular-elastic/elastic.js"></script>
+    <script src="/bower_components/angular-local-storage/angular-local-storage.js"></script>
+    <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js({client/.tmp,client}) /scripts/scripts.js -->

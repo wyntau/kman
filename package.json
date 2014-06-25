@@ -71,6 +71,7 @@
     "grunt-ngmin": "0.0.3",
     "grunt-nodemon": "^0.2.1",
     "grunt-usemin": "^2.2.0",
+    "grunt-wiredep": "^1.8.0",
     "jshint-stylish": "^0.2.0",
     "load-grunt-tasks": "^0.6.0",
     "time-grunt": "^0.3.2"

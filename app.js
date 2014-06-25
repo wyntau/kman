@@ -35,6 +35,10 @@ exports.init = function(){
         .listen(config.app.port)
         ;
 
+        // server = http.Server(app.callback());
+        // socket(server);
+        // server.listen(config.app.port);
+
         console.log('app is listening port', config.app.port);
     });
 };
@@ -42,10 +46,4 @@ exports.init = function(){
 if(!module.parent){
     exports.init();
 }
-
-// server = http.Server(app.callback());
-
-// socket(server);
-
-// server.listen(config.app.port)
 
