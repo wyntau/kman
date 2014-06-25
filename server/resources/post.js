@@ -3,6 +3,7 @@ var Resource = require('koa-resource-router')
     , User = require('../models/user')
     , authorize = require('../middles/authorize')
     , Promise = require('bluebird')
+    , socket = require('../socket')
     ;
 
 module.exports = new Resource('posts', {
@@ -68,6 +69,8 @@ module.exports = new Resource('posts', {
                     }
                 });
             });
+        var io = socket.io();
+        io.emit('post', post);
 
         this.status = 201;
         this.body = post;

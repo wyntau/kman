@@ -1,6 +1,6 @@
 'use strict';
 angular.module('kman')
-.controller('homeCtrl', ['$scope', 'Post', 'Comment', function($scope, Post, Comment){
+.controller('homeCtrl', ['$scope', 'Post', 'Comment', 'Socket', function($scope, Post, Comment, Socket){
     var user = $scope.common.user;
 
     $scope.postBox = {
@@ -9,6 +9,34 @@ angular.module('kman')
     };
 
     $scope.posts = [];
+
+    function addPost(newPost){
+        var _id = newPost._id;
+        if(!$scope.posts.some(function(post){
+            return post._id === _id;
+        })){
+            $scope.posts.unshift(newPost);
+        }
+    }
+
+    function addComment(newComment){
+        var postId = newComment.belong_to;
+        var posts, post;
+        if((posts = $scope.posts.filter(function(post){
+            return post._id === postId;
+        })).length){
+            var post = posts[0];
+            if(!post.comments.some(function(comment){
+                return comment._id === newComment._id;
+            })){
+                post.comments.push(newComment);
+            }
+        }
+    }
+
+    Socket.on('post', addPost);
+
+    Socket.on('comment', addComment);
 
     Post.query().$promise.then(function(posts){
         posts.forEach(function(post){
@@ -35,7 +63,7 @@ angular.module('kman')
                 content: '',
                 disabled: false
             };
-            $scope.posts.unshift(post);
+            addPost(post);
         });
     };
 
@@ -60,7 +88,7 @@ angular.module('kman')
         comment.$save(function(comment){
             post.commentBox.content = '';
             post.commentBox.disabled = false;
-            post.comments.push(comment);
+            addComment(comment);
         });
     };
 

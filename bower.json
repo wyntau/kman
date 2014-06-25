@@ -31,6 +31,7 @@
     "angular-resource": "~1.2.18",
     "angular-ui-router": "~0.2.10",
     "angular-elastic": "~2.3.5",
-    "angular-local-storage": "~0.0.5"
+    "angular-local-storage": "~0.0.5",
+    "angular-socket-io": "~0.6.0"
   }
 }

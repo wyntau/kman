@@ -4,7 +4,8 @@ angular.module('kman', [
     'ui.router',
     'monospaced.elastic',
     'ngResource',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'btford.socket-io'
 ])
 .config(['$locationProvider', '$stateProvider', '$urlRouterProvider', '$httpProvider', 'localStorageServiceProvider', function($locationProvider, $stateProvider, $urlRouterProvider, $httpProvider, localStorageServiceProvider){
     $locationProvider.html5Mode(true);

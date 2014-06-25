@@ -8,7 +8,7 @@ module.exports = function(server){
     io = socketIO(server);
 
     io.on('connection', function(socket){
-        
+        // console.log('a new client connected:', socket.id);
     });
 };
 

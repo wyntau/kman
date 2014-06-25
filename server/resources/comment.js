@@ -4,6 +4,7 @@ var Resource = require('koa-resource-router')
     , postResource = require('./post')
     , authorize = require('../middles/authorize')
     , Promise = require('bluebird')
+    , socket = require('../socket')
     ;
 
 var commentResource = new Resource('comments', {
@@ -40,6 +41,8 @@ var commentResource = new Resource('comments', {
                     }
                 });
             });
+        var io = socket.io();
+        io.emit('comment', comment);
 
         this.status = 201;
         this.body = comment;

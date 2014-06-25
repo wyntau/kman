@@ -10,7 +10,7 @@ var http = require('http')
     , assertsApp = require('./server/asserts')
     , renderApp = require('./server/render')
     , apiApp = require('./server/api')
-    // , socket = require('./server/socket')
+    , socket = require('./server/socket')
     , config = require('./config')
 
     , app = koa()
@@ -32,12 +32,12 @@ exports.init = function(){
         .use(mount('/api', apiApp))
         .use(mount(assertsApp))
         .use(mount(renderApp))
-        .listen(config.app.port)
+        // .listen(config.app.port)
         ;
 
-        // server = http.Server(app.callback());
-        // socket(server);
-        // server.listen(config.app.port);
+        server = http.Server(app.callback());
+        socket(server);
+        server.listen(config.app.port);
 
         console.log('app is listening port', config.app.port);
     });
