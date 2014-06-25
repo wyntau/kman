@@ -1,14 +1,11 @@
-var config = require('../../config')
-    , User = require('../models/user')
+var User = require('../models/user')
     , sign = require('../middles/authorize').sign
     , only = require('only')
     , request = require('co-request')
-    , qs = require('querystring')
     , gravatar = require('gravatar').url
     , Promise = require('bluebird')
-    , _passport = require('../pre/passport')
+    , passport = require('../pre/passport')
 
-    , passport = require('koa-passport')
     ;
 
 module.exports = {

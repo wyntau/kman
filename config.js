@@ -2,31 +2,9 @@ var path = require('path')
     , _ = require('lodash')
 
     , domain = 'http://kmanjs.com'
-
     , secret = 'kmansecret'
 
-    , rootPath = __dirname
-    , clientDir = 'client'
-    , serverDir = 'server'
-    , serverPath = path.join(rootPath, serverDir)
-    , clientPath = path.join(rootPath, clientDir)
-    , indexFile = 'index.html'
-    , apiPrefix = '/api'
-
-    , imagesDir = 'images'
-    , scriptsDir = 'scripts'
-    , bowerComponentsDir = 'bower_components'
-    , viewsDir = 'views'
-    , stylesDir = 'styles'
-    , devStylesDir = 'styles'
-
-    , port = 3000
-    , devPort = 3000
-    , testPort = 3001
-
-    , DBName = 'kman'
-    , devDBName = 'kmandev'
-    , testDBName = 'kmantest'
+    , root = __dirname
 
     , googleClientID = '280611452741-apjn650lstej7sc5cm0v4u3e2cr07imm.apps.googleusercontent.com'
     , googleClientSecret = 'v5xQ3pCT2KVkWnTSxk7aCVfF'
@@ -41,72 +19,66 @@ var path = require('path')
 var baseConfig = {
     secret: secret
     , env: process.env.NODE_ENV
-    , domain: domain
-    , app: {
-        root: rootPath
-        , client: clientPath
-        , server: serverPath
-        , indexFile: indexFile
-        , apiPrefix: apiPrefix
-    }
+    , root: root
     , asserts: {
-        images: path.join(clientPath, imagesDir)
-        , scripts: path.join(clientPath, scriptsDir)
-        , bower_components: path.join(clientPath, bowerComponentsDir)
-        , views: path.join(clientPath, viewsDir)
+        images: path.join(root, 'client/images')
+        , scripts: path.join(root, 'client/scripts')
+        , bower_components: path.join(root, 'client/bower_components')
+        , views: path.join(root, 'client/views')
+        , fonts: path.join(root, 'client/fonts')
     }
 };
 
 var envConfig = {
     development: {
         app: {
-            port: devPort
+            port: 3000
         }
         , asserts: {
-            styles: path.join(clientPath, devStylesDir)
+            styles: path.join(root, 'client/styles')
         }
         , minifier: {
             collapseWhitespace: false
             , removeComments: false
         }
         , mongo: {
-            url: 'mongodb://localhost:27017/' + devDBName
+            url: 'mongodb://localhost:27017/kmandev'
         }
         , oauth: {
             facebook: {
                 clientID: facebookClientID
                 , clientSecret: facebookClientSecret
-                , callbackURL: 'http://localhost:' + devPort + facebookCallbackPath
+                , callbackURL: 'http://localhost:3000' + facebookCallbackPath
             }
             , google: {
                 clientID: googleClientID
                 , clientSecret: googleClientSecret
-                , callbackURL: 'http://localhost:' + devPort + googleCallbackPath
+                , callbackURL: 'http://localhost:3000' + googleCallbackPath
             }
         }
     }
     , test: {
         app: {
-            port: testPort
+            port: 3001
         }
         , mongo: {
-            url: 'mongodb://localhost:27017/' + testDBName
+            url: 'mongodb://localhost:27017/kmantest'
         }
     }
     , production: {
         app: {
-            port: process.env.PORT || port
+            port: process.env.PORT || 3000
             , cacheTime: 7 * 24 * 60 * 60 * 1000 /* default caching time (7 days) for static files, calculated in milliseconds */
         }
         , asserts: {
-            styles: path.join(clientPath, stylesDir)
+            styles: path.join(root, 'client/styles')
         }
         , minifier: {
             collapseWhitespace: true
             , removeComments: true
         }
         , mongo: {
-            url: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || ('mongodb://localhost:27017/' + DBName)
+            url: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || ('mongodb://localhost:27017/kman')
         }
         , oauth: {
             facebook: {

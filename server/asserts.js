@@ -14,4 +14,5 @@ module.exports = app
     .use(mount('/bower_components', serve(config.asserts.bower_components)))
     .use(mount('/views', serve(config.asserts.views)))
     .use(mount('/styles', serve(config.asserts.styles)))
+    .use(mount('/fonts', serve(config.asserts.fonts)))
     ;

@@ -29,7 +29,7 @@ exports.init = function(){
             collapseWhitespace: config.minifier.collapseWhitespace,
             removeComments: config.minifier.removeComments
         }))
-        .use(mount(config.app.apiPrefix, apiApp))
+        .use(mount('/api', apiApp))
         .use(mount(assertsApp))
         .use(mount(renderApp))
         .listen(config.app.port)

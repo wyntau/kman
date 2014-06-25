@@ -1,4 +1,5 @@
-var koa = require('koa')
+var path = require('path')
+    , koa = require('koa')
     , router = require('koa-router')
     , bodyParser = require('koa-bodyparser')
     , spa = require('koa-spa')
@@ -16,8 +17,8 @@ module.exports = app
     .use(passport.initialize())
     .use(router(app))
     .use(routePath(app))
-    .use(spa(config.app.client, {
-        index: config.app.indexFile
+    .use(spa(path.join(config.root, 'client'), {
+        index: 'index.html'
         , static: {
             gzip: true
         }
