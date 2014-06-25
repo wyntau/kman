@@ -1,17 +1,12 @@
 var path = require('path')
     , _ = require('lodash')
 
+    , root = __dirname
+
     , domain = 'http://kmanjs.com'
     , secret = 'kmansecret'
 
-    , root = __dirname
-
-    , googleClientID = '280611452741-apjn650lstej7sc5cm0v4u3e2cr07imm.apps.googleusercontent.com'
-    , googleClientSecret = 'v5xQ3pCT2KVkWnTSxk7aCVfF'
     , googleCallbackPath = '/signin/google/callback'
-
-    , facebookClientID = '644645675629755'
-    , facebookClientSecret = '1037128b8458bc4599496f93918d4887'
     , facebookCallbackPath = '/signin/facebook/callback'
 
     ;
@@ -26,6 +21,16 @@ var baseConfig = {
         , bower_components: path.join(root, 'client/bower_components')
         , views: path.join(root, 'client/views')
         , fonts: path.join(root, 'client/fonts')
+    }
+    , oauth: {
+        facebook: {
+            clientID: '644645675629755'
+            , clientSecret: '1037128b8458bc4599496f93918d4887'
+        }
+        , google: {
+            clientID: '280611452741-apjn650lstej7sc5cm0v4u3e2cr07imm.apps.googleusercontent.com'
+            , clientSecret: 'v5xQ3pCT2KVkWnTSxk7aCVfF'
+        }
     }
 };
 
@@ -46,14 +51,10 @@ var envConfig = {
         }
         , oauth: {
             facebook: {
-                clientID: facebookClientID
-                , clientSecret: facebookClientSecret
-                , callbackURL: 'http://localhost:3000' + facebookCallbackPath
+                callbackURL: 'http://localhost:3000' + facebookCallbackPath
             }
             , google: {
-                clientID: googleClientID
-                , clientSecret: googleClientSecret
-                , callbackURL: 'http://localhost:3000' + googleCallbackPath
+                callbackURL: 'http://localhost:3000' + googleCallbackPath
             }
         }
     }
@@ -82,14 +83,10 @@ var envConfig = {
         }
         , oauth: {
             facebook: {
-                clientID: facebookClientID
-                , clientSecret: facebookClientSecret
-                , callbackURL: domain + facebookCallbackPath
+                callbackURL: domain + facebookCallbackPath
             }
             , google: {
-                clientID: googleClientID
-                , clientSecret: googleClientSecret
-                , callbackURL: domain + googleCallbackPath
+                callbackURL: domain + googleCallbackPath
             }
         }
     }
