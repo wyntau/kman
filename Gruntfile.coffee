@@ -15,17 +15,12 @@ module.exports = (grunt)->
                 tasks: ['newer:jshint:all']
                 options:
                     livereload: true
-            jsTest:
-                files: ['test/client/spec/{,*/}*.js']
-                tasks: ['newer:jshint:test', 'karma']
-            compass:
-                files: ['client/styles/{,*/}*.{scss,sass,css}']
+            css:
+                files: ['client/styles/**/*.{scss,sass,css}']
                 tasks: ['compass:server', 'autoprefixer']
                 options:
                     livereload: true
-            gruntfile:
-                files: ['Gruntfile.coffee']
-            client:
+            html:
                 files: ['client/**/*.html']
                 options:
                     livereload: true
@@ -33,6 +28,11 @@ module.exports = (grunt)->
                 files: ['.nodemon']
                 options:
                     livereload: true
+            jsTest:
+                files: ['test/client/spec/{,*/}*.js']
+                tasks: ['newer:jshint:test', 'karma']
+            gruntfile:
+                files: ['Gruntfile.coffee']
 
         nodemon:
             dev:
@@ -176,7 +176,7 @@ module.exports = (grunt)->
                 files: [{
                     expand: true
                     cwd: 'client/.tmp/concat/scripts'
-                    src: '**/*.js'
+                    src: ['**/*.js', '!**/vendor.js']
                     dest: 'client/.tmp/concat/scripts'
                 }]
 
