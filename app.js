@@ -39,7 +39,20 @@ exports.init = function(){
         .init(server)
         .listen(config.app.port);
 
-        console.log('app is listening port', config.app.port);
+        console.log('=========================================================');
+        console.log('      ___           ___           ___           ___');
+        console.log('     /\\__\\         /\\__\\         /\\  \\         /\\__\\');
+        console.log('    /:/  /        /::|  |       /::\\  \\       /::|  |');
+        console.log('   /:/__/        /:|:|  |      /:/\\:\\  \\     /:|:|  |');
+        console.log('  /::\\__\\____   /:/|:|__|__   /::\\~\\:\\  \\   /:/|:|  |__');
+        console.log(' /:/\\:::::\\__\\ /:/ |::::\\__\\ /:/\\:\\ \\:\\__\\ /:/ |:| /\\__\\');
+        console.log(' \\/_|:|~~|~    \\/__/~~/:/  / \\/__\\:\\/:/  / \\/__|:|/:/  /');
+        console.log('    |:|  |           /:/  /       \\::/  /      |:/:/  /');
+        console.log('    |:|  |          /:/  /        /:/  /       |::/  /');
+        console.log('    |:|  |         /:/  /        /:/  /        /:/  /');
+        console.log('     \\|__|         \\/__/         \\/__/         \\/__/');
+        console.log('=========================================================');
+        console.log('kman is listening port', config.app.port);
     });
 };
 
