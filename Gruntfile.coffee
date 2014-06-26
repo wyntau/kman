@@ -12,35 +12,60 @@ module.exports = (grunt)->
 
         watch:
             js:
-                files: ['client/scripts/**/*.js']
-                tasks: ['newer:jshint:all']
+                files: [
+                    'client/scripts/**/*.js'
+                ]
+                tasks: [
+                    'newer:jshint:all'
+                ]
                 options:
                     livereload: true
             css:
-                files: ['client/styles/**/*.{scss,sass,css}']
-                tasks: ['compass:server', 'autoprefixer']
+                files: [
+                    'client/styles/**/*.{scss,sass,css}'
+                ]
+                tasks: [
+                    'compass:server'
+                    'autoprefixer'
+                ]
                 options:
                     livereload: true
             html:
-                files: ['client/**/*.html']
+                files: [
+                    'client/**/*.html'
+                ]
                 options:
                     livereload: true
             server:
-                files: ['.nodemon']
+                files: [
+                    '.nodemon'
+                ]
                 options:
                     livereload: true
             jsTest:
-                files: ['test/client/spec/{,*/}*.js']
-                tasks: ['newer:jshint:test', 'karma']
+                files: [
+                    'test/client/spec/{,*/}*.js'
+                ]
+                tasks: [
+                    'newer:jshint:test'
+                    'karma'
+                ]
             gruntfile:
-                files: ['Gruntfile.coffee']
+                files: [
+                    'Gruntfile.coffee'
+                ]
 
         nodemon:
             dev:
                 script: 'app.js'
                 options:
-                    nodeArgs: ['--harmony']
-                    ignore: ['node_modules/**', 'client/**']
+                    nodeArgs: [
+                        '--harmony'
+                    ]
+                    ignore: [
+                        'node_modules/**'
+                        'client/**'
+                    ]
                     callback: (nodemon)->
                         fs.writeFileSync '.nodemon', 'started'
                         nodemon.on 'log', (event)->
@@ -51,7 +76,10 @@ module.exports = (grunt)->
                             , 250
 
         concurrent:
-            tasks: ['nodemon', 'watch']
+            tasks: [
+                'nodemon'
+                'watch'
+            ]
             options:
                 logConcurrentOutput: true
 
@@ -71,16 +99,12 @@ module.exports = (grunt)->
                 ]
 
         clean:
-            dist:
-                files: [{
-                    dot: true
-                    src: [
-                        '.sass-cache'
-                        '.tmp'
-                        'client/.tmp'
-                        'dist'
-                    ]
-                }]
+            dist: [
+                '.sass-cache'
+                '.tmp'
+                'client/.tmp'
+                'dist'
+            ]
             server: [
                 'client/.tmp'
                 '.tmp'
@@ -89,8 +113,12 @@ module.exports = (grunt)->
 
         wiredep:
             html:
-                src: ['client/index.html']
-                exclude: ['bootstrap-social']
+                src: [
+                    'client/index.html'
+                ]
+                exclude: [
+                    'bootstrap-social'
+                ]
                 fileTypes:
                     html:
                         replace:
@@ -99,14 +127,14 @@ module.exports = (grunt)->
 
         autoprefixer:
             options:
-                browsers: ['last 1 version']
+                browsers: [
+                    'last 1 version'
+                ]
             dist:
-                files: [{
-                    expand: true
-                    cwd: 'client/.tmp/styles/'
-                    src: '**/*.css'
-                    dest: 'client/.tmp/styles/'
-                }]
+                expand: true
+                cwd: 'client/.tmp/styles/'
+                src: '**/*.css'
+                dest: 'client/.tmp/styles/'
 
         compass:
             options:
@@ -147,13 +175,22 @@ module.exports = (grunt)->
                 flow:
                     html:
                         steps:
-                            js: ['concat', 'uglifyjs']
-                            css: ['cssmin']
+                            js: [
+                                'concat'
+                                'uglifyjs'
+                            ]
+                            css: [
+                                'cssmin'
+                            ]
                         post: {}
 
         usemin:
-            html: ['dist/client/{,*/}*.html']
-            css: ['dist/client/styles/{,*/}*.css']
+            html: [
+                'dist/client/{,*/}*.html'
+            ]
+            css: [
+                'dist/client/styles/{,*/}*.css'
+            ]
             options:
                 assertsDirs: [
                     'dist/client'
@@ -165,27 +202,26 @@ module.exports = (grunt)->
                 options:
                     collapseWhitespace: true
                     removeComments: true
-                files: [{
-                    expand: true
-                    cwd: 'dist/client'
-                    src: ['*.html', 'views/{,*/}*.html']
-                    dest: 'dist/client'
-                }]
+                expand: true
+                cwd: 'dist/client'
+                src: [
+                    '*.html'
+                    'views/{,*/}*.html'
+                ]
+                dest: 'dist/client'
 
         ngmin:
             dist:
-                files: [{
-                    expand: true
-                    cwd: 'client/.tmp/concat/scripts'
-                    src: ['**/*.js', '!**/vendor.js']
-                    dest: 'client/.tmp/concat/scripts'
-                }]
+                expand: true
+                cwd: 'client/.tmp/concat/scripts'
+                src: [
+                    '**/*.js'
+                    '!**/vendor.js'
+                ]
+                dest: 'client/.tmp/concat/scripts'
 
         ngtemplates:
             dist:
-                cwd: 'client/views'
-                src: ['**/*.html']
-                dest: 'client/.tmp/scripts/app.template.js'
                 options:
                     prefix: '/views/'
                     usemin: '/scripts/scripts.js'
@@ -193,6 +229,11 @@ module.exports = (grunt)->
                     htmlmin:
                         collapseWhitespace: true
                         removeComments: true
+                cwd: 'client/views'
+                src: [
+                    '**/*.html'
+                ]
+                dest: 'client/.tmp/scripts/app.template.js'
 
         copy:
             asserts:
@@ -212,7 +253,9 @@ module.exports = (grunt)->
                 expand: true
                 cwd: 'client/.tmp/images'
                 dist: 'dist/client/images'
-                src: ['generated/*']
+                src: [
+                    'generated/*'
+                ]
             fonts:
                 expand: true
                 cwd: 'client'
@@ -223,7 +266,13 @@ module.exports = (grunt)->
             server:
                 expand: true
                 cwd: '.'
-                src: ['server/**/*', 'app.js', 'package.json', 'config.js', 'README.md']
+                src: [
+                    'server/**/*'
+                    'app.js'
+                    'package.json'
+                    'config.js'
+                    'README.md'
+                ]
                 dest: 'dist'
             styles:
                 expand: true
@@ -260,7 +309,9 @@ module.exports = (grunt)->
                     archive: 'zips/<%= pkg.name %>-V<%= pkg.version %>.zip'
                 expand: true
                 cwd: 'dist/'
-                src: ['**/*']
+                src: [
+                    '**/*'
+                ]
                 dest: '<%= pkg.name %>'
 
         shell:
@@ -288,5 +339,7 @@ module.exports = (grunt)->
         'shell'
     ]
 
-    @registerTask 'dev', ['concurrent']
+    @registerTask 'dev', [
+        'concurrent'
+    ]
 
