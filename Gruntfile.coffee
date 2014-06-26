@@ -1,5 +1,6 @@
 fs = require 'fs'
 stylish = require 'jshint-stylish'
+open = require 'open'
 platform = require('os').platform()
 
 module.exports = (grunt)->
@@ -70,10 +71,14 @@ module.exports = (grunt)->
                         fs.writeFileSync '.nodemon', 'started'
                         nodemon.on 'log', (event)->
                             console.log event.colour
+                        nodemon.on 'config:update', ->
+                            setTimeout ->
+                                open 'http://localhost:3000'
+                            , 1500
                         nodemon.on 'restart', ->
                             setTimeout ->
                                 fs.writeFileSync '.nodemon', 'restarted'
-                            , 250
+                            , 1500
 
         concurrent:
             tasks: [

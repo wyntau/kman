@@ -76,6 +76,7 @@
     "grunt-wiredep": "^1.8.0",
     "jshint-stylish": "^0.2.0",
     "load-grunt-tasks": "^0.6.0",
+    "open": "0.0.5",
     "time-grunt": "^0.3.2"
   }
 }
