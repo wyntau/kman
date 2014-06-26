@@ -77,6 +77,7 @@ module.exports = (grunt)->
                         nodemon.on 'log', (event)->
                             console.log event.colour
                         nodemon.on 'config:update', ->
+                            console.log 'The default browser will open, wait a moment please.'
                             setTimeout ->
                                 open 'http://localhost:3000'
                             , 2000
