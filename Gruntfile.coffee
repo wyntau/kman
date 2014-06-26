@@ -80,11 +80,11 @@ module.exports = (grunt)->
                             console.log 'The default browser will open, wait a moment please.'
                             setTimeout ->
                                 open 'http://localhost:3000'
-                            , 2000
+                            , 2000 # 时间太短的话, server还没启动完毕, 浏览器就打开了
                         nodemon.on 'restart', ->
                             setTimeout ->
                                 fs.writeFileSync '.nodemon', 'restarted'
-                            , 1500
+                            , 2000 # 时间太短的话, server还没启动完毕, 浏览器就刷新了
 
         concurrent:
             tasks: [
