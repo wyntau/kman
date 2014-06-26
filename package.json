@@ -4,7 +4,9 @@
   "description": "Koa + MongoDB + Angular.js + Node.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "export NODE_ENV=production; ./node_modules/.bin/forever start -c 'node --harmony' app.js",
+    "stop": "./node_modules/.bin.forever stop app.js"
   },
   "keywords": [
     "Koa",
@@ -26,6 +28,7 @@
     "bluebird": "^2.1.3",
     "co-request": "^0.2.0",
     "except": "^0.1.1",
+    "forever": "^0.11.1",
     "gravatar": "^1.0.6",
     "jistype": "0.0.4",
     "koa": "^0.8.0",

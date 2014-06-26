@@ -20,8 +20,7 @@ So, if you want to refresh your browser when you changed specific files, maybe y
 ### For Deploy
 
     npm install --production
-    export NODE_ENV=production
-    node --harmony app.js
+    npm start
 
 ### LICENSE
 MIT
