@@ -263,17 +263,19 @@ module.exports = (grunt)->
             images:
                 expand: true
                 cwd: 'client/.tmp/images'
-                dist: 'dist/client/images'
+                dest: 'dist/client/images'
                 src: [
                     'generated/*'
                 ]
             fonts:
                 expand: true
                 cwd: 'client'
+                flatten: true
+                filter: 'isFile'
                 src: [
                     '**/*.{eot,svg,ttf,woff}'
                 ]
-                dest: 'dist/client'
+                dest: 'dist/client/fonts/'
             server:
                 expand: true
                 cwd: '.'
@@ -295,18 +297,6 @@ module.exports = (grunt)->
                 expand: true
                 cwd: 'client'
                 src: 'bower_components/**/*'
-                dest: 'dist/client'
-
-            fontawesomefonts:
-                expand: true
-                cwd: 'client/bower_components/font-awesome'
-                src: 'fonts/**'
-                dest: 'dist/client'
-
-            bootstrapfonts:
-                expand: true
-                cwd: 'client/bower_components/bootstrap/dist'
-                src: 'fonts/**'
                 dest: 'dist/client'
 
         karma:
