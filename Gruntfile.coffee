@@ -1,4 +1,5 @@
 fs = require 'fs'
+stylish = require 'jshint-stylish'
 platform = require('os').platform()
 
 module.exports = (grunt)->
@@ -57,7 +58,7 @@ module.exports = (grunt)->
         jshint:
             options:
                 jshintrc: '.jshintrc'
-                reporter: require('jshint-stylish')
+                reporter: stylish
             all:
                 src: [
                     'client/scripts/**/*.js'
