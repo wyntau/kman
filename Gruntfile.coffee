@@ -46,7 +46,7 @@ module.exports = (grunt)->
                             console.log event.colour
                         nodemon.on 'restart', ->
                             setTimeout ->
-                                fs.writeSync '.nodemon', 'restarted'
+                                fs.writeFileSync '.nodemon', 'restarted'
                             , 250
 
         concurrent:
