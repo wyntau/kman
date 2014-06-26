@@ -36,7 +36,7 @@ module.exports = (grunt)->
                     livereload: true
             sass:
                 files: [
-                    'client/styles/**/*.{scss,sass}'
+                    'client/styles/**/*.{scss,sass,css}'
                 ]
                 tasks: [
                     'compass:server'
