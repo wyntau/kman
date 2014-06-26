@@ -23,11 +23,8 @@ module.exports = (grunt)->
                     livereload: true
             css:
                 files: [
-                    'client/styles/**/*.{scss,sass,css}'
-                ]
-                tasks: [
-                    'compass:server'
-                    'autoprefixer'
+                    'client/styles/**/*.css'
+                    'client/.tmp/styles/**/*.css'
                 ]
                 options:
                     livereload: true
@@ -37,6 +34,14 @@ module.exports = (grunt)->
                 ]
                 options:
                     livereload: true
+            sass:
+                files: [
+                    'client/styles/**/*.{scss,sass}'
+                ]
+                tasks: [
+                    'compass:server'
+                    'autoprefixer'
+                ]
             server:
                 files: [
                     '.nodemon'
@@ -74,7 +79,7 @@ module.exports = (grunt)->
                         nodemon.on 'config:update', ->
                             setTimeout ->
                                 open 'http://localhost:3000'
-                            , 1500
+                            , 2000
                         nodemon.on 'restart', ->
                             setTimeout ->
                                 fs.writeFileSync '.nodemon', 'restarted'

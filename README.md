@@ -11,11 +11,11 @@ A starting point for writing AngularJS apps backed by a Koa-powered node.js serv
 
     npm install
     bower install
+    grunt dev
 
-    export NODE_ENV=development
-    node --harmony app.js
+A livereload server was started by grunt-contrib-watch which will watch static files(css, js, html) and server(via nodemon).
 
-    open http://localhost:3000
+So, if you want to refresh your browser when you changed specific files, maybe you should install the [browser extension](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions-).
 
 ### For Deploy
 
