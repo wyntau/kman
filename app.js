@@ -32,12 +32,12 @@ exports.init = function(){
         .use(mount('/api', apiApp))
         .use(mount(assertsApp))
         .use(mount(renderApp))
-        // .listen(config.app.port)
         ;
 
         server = http.Server(app.callback());
-        socket(server);
-        server.listen(config.app.port);
+        socket
+        .init(server)
+        .listen(config.app.port);
 
         console.log('app is listening port', config.app.port);
     });
