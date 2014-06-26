@@ -1,7 +1,8 @@
-.DS_Store
 node_modules
 bower_components
-.tmp
 dist
+zips
+.DS_Store
+.tmp
 .nodemon
 .sass-cache

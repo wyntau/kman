@@ -253,6 +253,21 @@ module.exports = (grunt)->
                 configFile: 'test/client/karma.conf.js'
                 singRun: true
 
+        compress:
+            dist:
+                options:
+                    archive: 'zips/<%= pkg.name %>-V<%= pkg.version %>.zip'
+                expand: true
+                cwd: 'dist/'
+                src: ['**/*']
+                dest: '<%= pkg.name %>'
+
+        shell:
+            md5:
+                options:
+                    stdout: true
+                command: "#{if platform ==  'darwin' then 'md5' else 'md5sum'} zips/<%= pkg.name %>-V<%= pkg.version %>.zip"
+
     @registerTask 'build', [
         'clean'
         'wiredep'
@@ -268,6 +283,8 @@ module.exports = (grunt)->
         'filerev'
         'usemin'
         'htmlmin'
+        'compress'
+        'shell'
     ]
 
     @registerTask 'dev', ['concurrent']
