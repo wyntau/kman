@@ -227,7 +227,6 @@ module.exports = (grunt)->
                 cwd: 'client/.tmp/concat/scripts'
                 src: [
                     '**/*.js'
-                    '!**/vendor.js'
                 ]
                 dest: 'client/.tmp/concat/scripts'
 
