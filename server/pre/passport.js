@@ -28,7 +28,7 @@ passport.use(new WeiboStrategy({
     , authorizationURL: 'https://api.weibo.com/oauth2/authorize'
     , tokenURL: 'https://api.weibo.com/oauth2/access_token'
 }, function(accessToken, refreshToken, profile, done){
-    done(profile);
+    done(null, profile);
 }));
 
 module.exports = passport;

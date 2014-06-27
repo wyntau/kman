@@ -134,7 +134,7 @@ module.exports = {
         var ctx = this;
         yield passport.authenticate('weibo', {
             failureRedirect: '/signin.html'
-        }, function *(user){
+        }, function *(err, user, info){
             ctx.user = user;
             yield next;
         }).call(ctx);
