@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "export NODE_ENV=production; ./node_modules/.bin/forever start -c 'node --harmony' app.js",
-    "stop": "./node_modules/.bin.forever stop app.js"
+    "stop": "./node_modules/.bin/forever stop app.js"
   },
   "keywords": [
     "Koa",
