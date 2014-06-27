@@ -6,9 +6,11 @@ A starting point for writing AngularJS apps backed by a Koa-powered node.js serv
 ### Requirements
 1. MongoDB
 2. node >= 0.11.9
+3. ruby and sass,compass gems
 
 ### For Develop
 
+    npm install -g bower grunt-cli
     npm install
     bower install
     grunt dev
