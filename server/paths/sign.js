@@ -129,4 +129,49 @@ module.exports = {
 
         this.redirect('/?user=' + encodeURIComponent(JSON.stringify({token: token, user: showUser})));
     }]
+    , 'GET /signin/weibo': passport.authenticate('weibo')
+    , 'GET /signin/weibo/callback': [function *(next){
+        var ctx = this;
+        yield passport.authenticate('weibo', {
+            failureRedirect: '/signin.html'
+        }, function *(user){
+            ctx.user = user;
+            yield next;
+        }).call(ctx);
+    }, function *(next){
+        var profile = this.user;
+        var user = yield User.findOne({
+            platform: 'weibo'
+            , platformId: profile.idstr
+        }, {
+            _id: 1
+            , name: 1
+            , avatar: 1
+        }).exec();
+
+        if(!user){
+            user = new User({
+                platform: 'weibo'
+                , platformId: profile.idstr
+                , name: profile.screen_name
+                , avatar: profile.avatar_large
+            });
+        }else{
+            user.name = profile.screen_name;
+            user.avatar = profile.avatar_large;
+        }
+        yield Promise.promisify(user.save, user)();
+
+        var showUser = only(user, [
+            '_id'
+            , 'name'
+            , 'avatar'
+        ]);
+
+        var token = sign(showUser, {
+                expireInMinutes: 90 * 24 * 60
+            });
+
+        this.redirect('/?user=' + encodeURIComponent(JSON.stringify({token: token, user: showUser})));
+    }]
 };
