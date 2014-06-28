@@ -243,7 +243,7 @@ module.exports = (grunt)->
                 src: [
                     '**/*.html'
                 ]
-                dest: 'client/.tmp/scripts/app.template.js'
+                dest: 'client/.tmp/ngtemplates/app.template.js'
 
         copy:
             asserts:
