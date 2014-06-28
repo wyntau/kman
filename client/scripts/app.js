@@ -47,13 +47,14 @@ angular.module('kman', [
     $httpProvider.interceptors.push('HttpInterceptor');
 }])
 .run(['$rootScope', '$window', '$http', 'Socket', 'Authorize', function($rootScope, $window, $http, Socket, Authorize){
-    if(!Authorize.getUser()){
+    var user = Authorize.getUser();
+    if(!user){
         $window.location.replace('/signin.html');
         return;
     }
     var common = $rootScope.common = $rootScope.common || {
         active: {},
-        user: JSON.parse($window.sessionStorage.user || $window.localStorage.user),
+        user: user,
         logout: function(){
             delete $window.sessionStorage.token;
             delete $window.sessionStorage.user;
@@ -77,7 +78,7 @@ angular.module('kman', [
         $rootScope.common.active[toState.data.ctrl] = 'active';
     });
 
-    $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromState, error){
+    $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error){
         event.preventDefault();
         if(error.authorized === false){
             $window.location.replace('/signin.html');

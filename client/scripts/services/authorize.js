@@ -11,17 +11,19 @@ angular.module('kman')
     };
 
     exports.isAuthorized = function(){
+        var deferred = $q.defer();
         var user = exports.getUser();
 
         if(user){
-            return $q.resolve({
+            deferred.resolve({
                 authorized: true
             });
         }else{
-            return $q.reject({
+            deferred.reject({
                 authorized: false
             });
         }
+        return deferred.promise;
     }
     return exports;
 }]);

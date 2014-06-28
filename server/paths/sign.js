@@ -82,7 +82,7 @@ module.exports = {
                 expireInMinutes: 90 * 24 * 60
             });
 
-        this.render('oauth', {
+        yield this.render('oauth', {
             output: JSON.stringify({
                 token: token
                 , user: user
@@ -132,7 +132,7 @@ module.exports = {
                 expireInMinutes: 90 * 24 * 60
             });
 
-        this.render('oauth', {
+        yield this.render('oauth', {
             output: JSON.stringify({
                 token: token
                 , user: user
@@ -182,7 +182,7 @@ module.exports = {
                 expireInMinutes: 90 * 24 * 60
             });
 
-        this.render('oauth', {
+        yield this.render('oauth', {
             output: JSON.stringify({
                 token: token
                 , user: user

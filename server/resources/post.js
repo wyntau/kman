@@ -6,7 +6,7 @@ var Resource = require('koa-resource-router')
     , socket = require('../socket')
     ;
 
-module.exports = new Resource('posts', {
+module.exports = new Resource('posts', authorize, {
     index: function *(next){
         var posts = yield Post.find().limit(15).sort({
             created_at: -1
@@ -47,7 +47,7 @@ module.exports = new Resource('posts', {
 
         this.body = posts;
     }
-    , create: [authorize, function *(next){
+    , create: function *(next){
         var body = this.request.body
             , userId = this.user._id
             , post
@@ -74,5 +74,5 @@ module.exports = new Resource('posts', {
 
         this.status = 201;
         this.body = post;
-    }]
+    }
 });

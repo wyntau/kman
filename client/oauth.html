@@ -11,7 +11,7 @@
     <script>
         angular.module('oauth', ['LocalStorageModule'])
         .run(['localStorageService', '$window', function(localStorageService, $window){
-            var output = {% autoscape false %}{{output}}{%autoscape%};
+            var output = {% autoescape false %}{{output}}{%autoescape%};
             localStorageService.set('user', output.user);
             localStorageService.set('token', output.token);
 
