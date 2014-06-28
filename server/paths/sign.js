@@ -82,7 +82,12 @@ module.exports = {
                 expireInMinutes: 90 * 24 * 60
             });
 
-        this.redirect('/?user=' + encodeURIComponent(JSON.stringify({token: token, user: showUser})));
+        this.render('oauth', {
+            output: JSON.stringify({
+                token: token
+                , user: user
+            })
+        });
     }]
     , 'GET /signin/google': passport.authenticate('google', {scope: 'profile'})
     , 'GET /signin/google/callback': [function *(next){
@@ -127,7 +132,12 @@ module.exports = {
                 expireInMinutes: 90 * 24 * 60
             });
 
-        this.redirect('/?user=' + encodeURIComponent(JSON.stringify({token: token, user: showUser})));
+        this.render('oauth', {
+            output: JSON.stringify({
+                token: token
+                , user: user
+            })
+        });
     }]
     , 'GET /signin/weibo': passport.authenticate('weibo')
     , 'GET /signin/weibo/callback': [function *(next){
@@ -172,6 +182,11 @@ module.exports = {
                 expireInMinutes: 90 * 24 * 60
             });
 
-        this.redirect('/?user=' + encodeURIComponent(JSON.stringify({token: token, user: showUser})));
+        this.render('oauth', {
+            output: JSON.stringify({
+                token: token
+                , user: user
+            })
+        });
     }]
 };

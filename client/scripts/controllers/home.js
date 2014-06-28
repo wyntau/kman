@@ -1,6 +1,6 @@
 'use strict';
 angular.module('kman')
-.controller('homeCtrl', ['$scope', 'Post', 'Comment', 'Socket', function($scope, Post, Comment, Socket){
+.controller('homeCtrl', ['authorized', '$scope', 'Post', 'Comment', 'Socket', function(authorized, $scope, Post, Comment, Socket){
     var user = $scope.common.user;
 
     $scope.postBox = {

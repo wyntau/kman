@@ -31,7 +31,7 @@
                 </li>
                 <li class="media post-comment" ng-repeat="comment in post.comments">
                     <a href="#" class="pull-left">
-                        <img class="media-object" ng-src="{{comment.created_by.avatar}}" alt="">
+                        <img class="media-object" ng-src="{{comment.created_by.avatar}}" alt="{{comment.created_by.name}}">
                     </a>
                     <div class="media-body story-comment-body">
                         <small><a href="#" class="bold">{{comment.created_by.name}}</a> {{comment.content}}</small>
@@ -42,7 +42,7 @@
                 </li>
                 <li class="media post-comment comment-box">
                     <a href="#" class="pull-left">
-                        <img class="media-object" ng-src="{{common.user.avatar}}" alt="">
+                        <img class="media-object" ng-src="{{common.user.avatar}}" alt="{{comment.created_by.name}}">
                     </a>
                     <div class="media-body post-comment-body">
                         <textarea msd-elastic ng-model="post.commentBox.content" ng-keypress="createComment($event, post)" ng-disabled="post.commentBox.disabled" class="form-control" placeholder="Write a comment..."></textarea>

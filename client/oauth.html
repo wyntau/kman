@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="oauth">
+<head>
+    <meta charset="UTF-8">
+    <title>登录成功, 正在进行跳转</title>
+</head>
+<body>
+    登录成功, 正在进行跳转...
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular-local-storage/angular-local-storage.min.js"></script>
+    <script>
+        angular.module('oauth', ['LocalStorageModule'])
+        .run(['localStorageService', '$window', function(localStorageService, $window){
+            var output = {% autoscape false %}{{output}}{%autoscape%};
+            localStorageService.set('user', output.user);
+            localStorageService.set('token', output.token);
+
+            $window.location.replace('/');
+        }]);
+    </script>
+</body>
+</html>

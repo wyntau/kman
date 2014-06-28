@@ -9,7 +9,7 @@ angular.module('kman', [
     'btford.socket-io',
     'ngAnimate'
 ])
-.config(['$locationProvider', '$stateProvider', '$urlRouterProvider', '$httpProvider', 'localStorageServiceProvider', function($locationProvider, $stateProvider, $urlRouterProvider, $httpProvider, localStorageServiceProvider){
+.config(['$locationProvider', '$stateProvider', '$urlRouterProvider', '$httpProvider', function($locationProvider, $stateProvider, $urlRouterProvider, $httpProvider, localStorageServiceProvider){
     $locationProvider.html5Mode(true);
 
     $stateProvider
@@ -20,6 +20,11 @@ angular.module('kman', [
             data: {
                 title: 'KMAN Home',
                 ctrl: 'home'
+            },
+            resolve: {
+                authorized: ['Authorize', function(Authorize){
+                    return Authorize.isAuthorized();
+                }]
             }
         })
         .state('profile', {
@@ -29,17 +34,23 @@ angular.module('kman', [
             data: {
                 title: 'User Profile',
                 ctrl: 'profile'
+            },
+            resolve: {
+                authorized: ['Authorize', function(Authorize){
+                    return Authorize.isAuthorized();
+                }]
             }
         });
 
     $urlRouterProvider.otherwise('/');
 
     $httpProvider.interceptors.push('HttpInterceptor');
-
-    localStorageServiceProvider.setPrefix('');
-
 }])
-.run(['$location', '$rootScope', '$window', '$http', 'Socket',function($location, $rootScope, $window, $http, Socket){
+.run(['$rootScope', '$window', '$http', 'Socket', 'Authorize', function($rootScope, $window, $http, Socket, Authorize){
+    if(!Authorize.getUser()){
+        $window.location.replace('/signin.html');
+        return;
+    }
     var common = $rootScope.common = $rootScope.common || {
         active: {},
         user: JSON.parse($window.sessionStorage.user || $window.localStorage.user),
@@ -59,15 +70,21 @@ angular.module('kman', [
         }
     };
 
-    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, formParams){
+    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
         $rootScope.common.title = toState.data.title;
 
         $rootScope.common.active = {};
         $rootScope.common.active[toState.data.ctrl] = 'active';
     });
 
+    $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromState, error){
+        event.preventDefault();
+        if(error.authorized === false){
+            $window.location.replace('/signin.html');
+        }
+    });
+
     Socket.on('online', function(){
-        console.log('connection');
         $rootScope.common.onlineIndicatorStyle = {'background-color': 'green'};
     });
 

@@ -1,5 +1,5 @@
 'use strict';
 angular.module('kman')
-.controller('profileCtrl', ['$scope', function($scope){
+.controller('profileCtrl', ['authorized', '$scope', function(authorized, $scope){
     $scope.user = $scope.common.user;
 }]);

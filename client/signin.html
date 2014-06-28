@@ -150,11 +150,6 @@
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Password" ng-model="password">
                     </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" id="rememberme" ng-model="remember">Remember me
-                        </label>
-                    </div>
                     <p ng-if="error" ng-cloak class="help-block" style="color: darkred; font-weight: bold;">{{error}}</p>
                     <button type="submit" class="btn btn-default">Sign In</button>
                 </form>
@@ -175,23 +170,22 @@
         </footer>
     </div>
 
-    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular-local-storage/angular-local-storage.min.js"></script>
     <script>
-    angular.module('signin', [])
-    .controller('mainCtrl', ['$scope', '$http', function($scope, $http){
+    angular.module('signin', ['LocalStorageModule'])
+    .controller('mainCtrl', ['$scope', '$http', 'localStorageService', function($scope, $http, localStorageService){
         $scope.email = 'admin@kmanjs.com';
         $scope.password = 'pass';
-        $scope.remember = true;
 
         $scope.login = function(){
             $http.post('/signin', {
                 email: $scope.email,
                 password: $scope.password
             }).success(function(data){
-                var storage = $scope.remember ? window.localStorage : window.sessionStorage;
 
-                storage.token = data.token;
-                storage.user = JSON.stringify(data.user);
+                localStorageService.set('token', data.token);
+                localStorageService.set('user', data.user)
 
                 window.location.replace('/');
             }).error(function(data){
