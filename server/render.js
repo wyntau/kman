@@ -17,6 +17,7 @@ module.exports = app
     .use(bodyParser())
     .use(views('./views', {
         default: 'swig'
+        , cache: 'memory'
     }))
     .use(passport.initialize())
     .use(router(app))
