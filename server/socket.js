@@ -7,7 +7,11 @@ module.exports.init = function(server){
     io = socketIO(server);
 
     io.on('connection', function(socket){
-        // console.log('a new client connected:', socket.id);
+        io.emit('online');
+    });
+
+    io.on('disconnection', function(socket){
+        io.emit('offline');
     });
 
     return server; // for chain

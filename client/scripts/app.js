@@ -37,7 +37,7 @@ angular.module('kman', [
     localStorageServiceProvider.setPrefix('');
 
 }])
-.run(['$location', '$rootScope', '$window', '$http', function($location, $rootScope, $window, $http){
+.run(['$location', '$rootScope', '$window', '$http', 'Socket',function($location, $rootScope, $window, $http, Socket){
     var common = $rootScope.common = $rootScope.common || {
         active: {},
         user: JSON.parse($window.sessionStorage.user || $window.localStorage.user),
@@ -62,6 +62,15 @@ angular.module('kman', [
 
         $rootScope.common.active = {};
         $rootScope.common.active[toState.data.ctrl] = 'active';
+    });
+
+    Socket.on('online', function(){
+        console.log('connection');
+        $rootScope.common.onlineIndicatorStyle = {'background-color': 'green'};
+    });
+
+    Socket.on('offline', function(){
+        $rootScope.common.onlineIndicatorStyle = {'background-color': 'lightgrey'};
     });
 
     console.log('          _____                    _____                    _____                    _____\n         /\\    \\                  /\\    \\                  /\\    \\                  /\\    \\\n        /::\\____\\                /::\\____\\                /::\\    \\                /::\\____\\\n       /:::/    /               /::::|   |               /::::\\    \\              /::::|   |\n      /:::/    /               /:::::|   |              /::::::\\    \\            /:::::|   |\n     /:::/    /               /::::::|   |             /:::/\\:::\\    \\          /::::::|   |\n    /:::/____/               /:::/|::|   |            /:::/__\\:::\\    \\        /:::/|::|   |\n   /::::\\    \\              /:::/ |::|   |           /::::\\   \\:::\\    \\      /:::/ |::|   |\n  /::::::\\____\\________    /:::/  |::|___|______    /::::::\\   \\:::\\    \\    /:::/  |::|   | _____\n /:::/\\:::::::::::\\    \\  /:::/   |::::::::\\    \\  /:::/\\:::\\   \\:::\\    \\  /:::/   |::|   |/\\    \\\n/:::/  |:::::::::::\\____\\/:::/    |:::::::::\\____\\/:::/  \\:::\\   \\:::\\____\\/:: /    |::|   /::\\____\\\n\\::/   |::|~~~|~~~~~     \\::/    / ~~~~~/:::/    /\\::/    \\:::\\  /:::/    /\\::/    /|::|  /:::/    /\n \\/____|::|   |           \\/____/      /:::/    /  \\/____/ \\:::\\/:::/    /  \\/____/ |::| /:::/    /\n       |::|   |                       /:::/    /            \\::::::/    /           |::|/:::/    /\n       |::|   |                      /:::/    /              \\::::/    /            |::::::/    /\n       |::|   |                     /:::/    /               /:::/    /             |:::::/    /\n       |::|   |                    /:::/    /               /:::/    /              |::::/    /\n       |::|   |                   /:::/    /               /:::/    /               /:::/    /\n       \\::|   |                  /:::/    /               /:::/    /               /:::/    /\n        \\:|   |                  \\::/    /                \\::/    /                \\::/    /\n         \\|___|                   \\/____/                  \\/____/                  \\/____/\n');

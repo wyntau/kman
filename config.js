@@ -45,7 +45,7 @@ var envConfig = {
             port: 3000
         }
         , asserts: {
-            styles: path.join(root, 'client/styles')
+            styles: path.join(root, 'client/.tmp/styles')
         }
         , minifier: {
             collapseWhitespace: false

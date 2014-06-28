@@ -1,4 +1,8 @@
 <h4><span style="text-decoration: underline;">{{user.name}}</span>'s Profile</h4>
-
-<div><strong>ID: </strong> {{user._id}}</div>
-<div><strong>Mail: </strong> {{user.email}}</div>
+<div class="media">
+    <img ng-src="{{user.avatar}}" class="pull-left" alt="">
+    <div class="media-body">
+        <div><strong>Name: </strong> {{user.name}}</div>
+        <div><strong>ID: </strong> {{user._id}}</div>
+    </div>
+</div>
