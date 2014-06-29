@@ -7,6 +7,10 @@ A starting point for writing AngularJS apps backed by a Koa-powered node.js serv
 1. MongoDB
 2. node >= 0.11.9
 3. ruby and sass,compass gems
+4. git
+
+
+In addition, __Linux__ or __Mac__ is optional but recommended, because __Linux__ or __Mac__ is more friendly to ruby(& gems) and some npm packages.
 
 ### For Develop
 
