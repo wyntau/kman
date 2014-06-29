@@ -50,6 +50,9 @@ angular.module('kman')
     });
 
     $scope.createPost = function(){
+        if(!$scope.postBox.content.length || $scope.postBox.disabled){
+            return;
+        }
         $scope.postBox.disabled = true;
         var post = new Post({
             content: $scope.postBox.content,
