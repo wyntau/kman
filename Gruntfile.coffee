@@ -340,6 +340,8 @@ module.exports = (grunt)->
     ]
 
     @registerTask 'dev', [
+        'wiredep'
+        'compass:server'
         'concurrent'
     ]
 
