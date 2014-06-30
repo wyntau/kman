@@ -212,11 +212,11 @@ module.exports = {
                 platform: 'qq'
                 , platformId: profile.id
                 , name: profile.nickname
-                , avatar: profile.figureurl_qq_2
+                , avatar: profile._json.figureurl_qq_2
             });
         }else{
             user.name = profile.nickname;
-            user.avatar = profile.figureurl_qq_2;
+            user.avatar = profile._json.figureurl_qq_2;
         }
         yield Promise.promisify(user.save, user)();
 
