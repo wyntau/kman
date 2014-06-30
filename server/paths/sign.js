@@ -189,4 +189,52 @@ module.exports = {
             })
         });
     }]
+    , 'GET /signin/qq': passport.authenticate('qq')
+    , 'GET /signin/qq/callback': [function *(next){
+        var ctx = this;
+        yield passport.authenticate('qq', function *(err, user, info){
+            ctx.user = user;
+            yield next;
+        }).call(ctx);
+    }, function *(next){
+        var profile = this.user;
+        var user = yield User.findOne({
+            platform: 'qq'
+            , platformId: profile.id
+        }, {
+            _id: 1
+            , name: 1
+            , avatar: 1
+        }).exec();
+
+        if(!user){
+            user = new User({
+                platform: 'qq'
+                , platformId: profile.id
+                , name: profile.nickname
+                , avatar: profile.figureurl_qq_2
+            });
+        }else{
+            user.name = profile.nickname;
+            user.avatar = profile.figureurl_qq_2;
+        }
+        yield Promise.promisify(user.save, user)();
+
+        var showUser = only(user, [
+            '_id'
+            , 'name'
+            , 'avatar'
+        ]);
+
+        var token = sign(showUser, {
+                expireInMinutes: 90 * 24 * 60
+            });
+
+        yield this.render('oauth', {
+            output: JSON.stringify({
+                token: token
+                , user: user
+            })
+        });
+    }]
 };

@@ -9,6 +9,7 @@ var path = require('path')
     , googleCallbackPath = '/signin/google/callback'
     , facebookCallbackPath = '/signin/facebook/callback'
     , weiboCallbackPath = '/signin/weibo/callback'
+    , qqCallbackPath = '/signin/qq/callback'
 
     ;
 
@@ -35,6 +36,10 @@ var baseConfig = {
         , weibo: {
             clientID: '61912456'
             , clientSecret: 'efd9b75e9f4ce3d9d25ffeaac8194700'
+        }
+        , qq: {
+            clientID: '101135479'
+            , clientSecret: '8daf20cf8818fc26a023316446331e21'
         }
     }
 };
@@ -63,6 +68,9 @@ var envConfig = {
             }
             , weibo: {
                 callbackURL: 'http://localhost:3000' + weiboCallbackPath
+            }
+            , qq: {
+                callbackURL: 'http://localhost:3000' + qqCallbackPath
             }
         }
     }
@@ -98,6 +106,9 @@ var envConfig = {
             }
             , weibo: {
                 callbackURL: domain + weiboCallbackPath
+            }
+            , qq: {
+                callbackURL: domain + qqCallbackPath
             }
         }
     }

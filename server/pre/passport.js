@@ -2,6 +2,7 @@ var passport = require('koa-passport')
     , FacebookStrategy = require('passport-facebook').Strategy
     , GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
     , WeiboStrategy = require('passport-weibo').Strategy
+    , QQStrategy = require('passport-qq').Strategy
     , config = require('../../config')
     ;
 
@@ -27,6 +28,14 @@ passport.use(new WeiboStrategy({
     , callbackURL: config.oauth.weibo.callbackURL
     , authorizationURL: 'https://api.weibo.com/oauth2/authorize'
     , tokenURL: 'https://api.weibo.com/oauth2/access_token'
+}, function(accessToken, refreshToken, profile, done){
+    done(null, profile);
+}));
+
+passport.use(new QQStrategy({
+    clientID: config.oauth.qq.clientID
+    , clientSecret: config.oauth.qq.clientSecret
+    , callbackURL: config.oauth.qq.callbackURL
 }, function(accessToken, refreshToken, profile, done){
     done(null, profile);
 }));
