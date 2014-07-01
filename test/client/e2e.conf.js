@@ -6,5 +6,9 @@ exports.config = {
     framework: 'mocha',
     specs: [
         'e2e/*.spec.js'
-    ]
+    ],
+    mochaOpts: {
+        ui: 'bdd',
+        reporter: 'spec'
+    }
 };
