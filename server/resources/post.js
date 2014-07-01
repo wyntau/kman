@@ -54,7 +54,6 @@ module.exports = new Resource('posts', authorize, {
             ;
 
         body.createdBy = userId;
-        body.createdAt = new Date();
 
         post = new Post(body);
 
