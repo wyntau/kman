@@ -3,10 +3,10 @@ var mongoose = require('mongoose')
     ;
 
 var Post = Schema({
-    created_by: {type: Schema.Types.ObjectId, ref: 'User'}
+    createdBy: {type: Schema.Types.ObjectId, ref: 'User'}
     , content: String
-    , created_at: Date
-    , updated_at: Date
+    , createdAt: Date
+    , updatedAt: Date
     , comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}]
 });
 

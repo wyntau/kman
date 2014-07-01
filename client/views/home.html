@@ -11,18 +11,18 @@
 <ul class="media-list posts">
     <li class="media post" ng-repeat="post in posts" id="post_{{post._id}}">
         <a href="#" class="pull-left">
-            <img class="media-object" ng-src="{{post.created_by.avatar}}" alt="">
+            <img class="media-object" ng-src="{{post.createdBy.avatar}}" alt="">
         </a>
         <div class="media-body post-body">
             <h5 class="media-heading">
-                <a href="#">{{post.created_by.name}}</a>
+                <a href="#">{{post.createdBy.name}}</a>
                 <span ng-if="post.to">
                     <span class="glyphicon glyphicon-play"></span> <a href="#">{{post.to.name}}</a>
                 </span>
             </h5>
             {{post.content}}
             <small class="post-tools">
-                {{post.created_at | date:'medium'}} &middot;
+                {{post.createdAt | date:'medium'}} &middot;
                 <span class="glyphicon glyphicon-{{post.to ? 'envelope' : 'globe'}}"></span>
             </small>
             <ul class="media-list post-comments">
@@ -31,18 +31,18 @@
                 </li>
                 <li class="media post-comment" ng-repeat="comment in post.comments">
                     <a href="#" class="pull-left">
-                        <img class="media-object" ng-src="{{comment.created_by.avatar}}" alt="{{comment.created_by.name}}">
+                        <img class="media-object" ng-src="{{comment.createdBy.avatar}}" alt="{{comment.createdBy.name}}">
                     </a>
                     <div class="media-body story-comment-body">
-                        <small><a href="#" class="bold">{{comment.created_by.name}}</a> {{comment.content}}</small>
+                        <small><a href="#" class="bold">{{comment.createdBy.name}}</a> {{comment.content}}</small>
                         <small class="post-comment-tools">
-                            {{comment.created_at | date:'short'}}
+                            {{comment.createdAt | date:'short'}}
                         </small>
                     </div>
                 </li>
                 <li class="media post-comment comment-box">
                     <a href="#" class="pull-left">
-                        <img class="media-object" ng-src="{{common.user.avatar}}" alt="{{comment.created_by.name}}">
+                        <img class="media-object" ng-src="{{common.user.avatar}}" alt="{{comment.createdBy.name}}">
                     </a>
                     <div class="media-body post-comment-body">
                         <textarea msd-elastic ng-model="post.commentBox.content" ng-keypress="createComment($event, post)" ng-disabled="post.commentBox.disabled" class="form-control" placeholder="Write a comment..."></textarea>

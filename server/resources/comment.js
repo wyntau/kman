@@ -15,9 +15,9 @@ var commentResource = new Resource('comments', {
             , comment
             ;
 
-        body.belong_to = postId;
-        body.created_by = userId;
-        body.created_at = new Date();
+        body.belongTo = postId;
+        body.createdBy = userId;
+        body.createdAt = new Date();
 
         var comment = new Comment(body);
 
@@ -34,7 +34,7 @@ var commentResource = new Resource('comments', {
                 var comment = result[0];
 
                 return Comment.populate(comment, {
-                    path: 'created_by'
+                    path: 'createdBy'
                     , select: {
                         name: 1
                         , avatar: 1

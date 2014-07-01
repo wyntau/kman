@@ -37,23 +37,23 @@ module.exports = function(override){
 
                 var posts = [
                     new Post({
-                        created_by: users[0]._id
+                        createdBy: users[0]._id
                         , content: 'Hi there! This is a sample post demonstrating a KMAN app. KMAN is a simple boilerplate for building full-stack JavaScript Web applications using Koa, AngularJS, and Node.js. It utilizes WebSockets to provide real-time communication between servers and clients. MongoDB is used for data persistence and Passport.js for social logins. There are also numerous Grunt tasks pre-bundled and configured to facilitate development and testing. You can open this site in multiple browser tabs and post something to see how real-time communication works. You can also browse the project’s GitHub page to start building KMAN apps yourself.'
-                        , created_at: new Date()
+                        , createdAt: new Date()
                     })
                 ];
 
                 var comments = [
                     new Comment({
-                        created_by: users[1]._id
-                        , belong_to: posts[0]._id
-                        , created_at: new Date()
+                        createdBy: users[1]._id
+                        , belongTo: posts[0]._id
+                        , createdAt: new Date()
                         , content: 'Also remember that, if you can read this, you are within range of Chuck!'
                     })
                     , new Comment({
-                        created_by: users[0]._id
-                        , belong_to: posts[0]._id
-                        , created_at: new Date()
+                        createdBy: users[0]._id
+                        , belongTo: posts[0]._id
+                        , createdAt: new Date()
                         , content: 'Ow yeah!'
                     })
                 ];
