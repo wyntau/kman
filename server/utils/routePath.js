@@ -8,14 +8,17 @@ var fs = require('fs')
     ;
 
 module.exports = function(app){
-    fs.readdirSync(pathsPath).forEach(function(file){
+    if(fs.existsSync(pathsPath)){
+        fs.readdirSync(pathsPath).forEach(function(file){
 
-        var route = require(path.join(pathsPath, file));
+            var route = require(path.join(pathsPath, file));
 
-        if(!route.isPrivate){
-            dispath(app, except(route, 'isPrivate'));
-        }
-    });
+            if(!route.isPrivate){
+                dispath(app, except(route, 'isPrivate'));
+            }
+        });
+    }
+
     return noop;
 };
 
