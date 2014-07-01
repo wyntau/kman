@@ -32,7 +32,7 @@ In addition, __Linux__ or __Mac__ is optional but recommended, because __Linux__
     - Frontend e2e test
         1. start app server if your server was not running
 
-                npm run backend
+                npm run server
 
         2. Start selenium server
 

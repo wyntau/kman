@@ -4,11 +4,11 @@
   "description": "Koa + MongoDB + Angular.js + Node.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo 'run server, seleniem, protractor and karma task please!'",
     "start": "export NODE_ENV=production; ./node_modules/.bin/forever start -c 'node --harmony' app.js",
     "stop": "./node_modules/.bin/forever stop app.js",
     "postinstall": "if [ \"$NODE_ENV\" != \"production\" ]; then ./node_modules/protractor/bin/webdriver-manager update; fi;",
-    "backend": "node --harmony app.js",
+    "server": "node --harmony app.js",
     "seleniem": "./node_modules/protractor/bin/webdriver-manager start",
     "protractor": "./node_modules/protractor/bin/protractor test/client/e2e.conf.js",
     "karma": "./node_modules/karma/bin/karma start test/client/karma.conf.js"
