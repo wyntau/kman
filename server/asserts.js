@@ -1,5 +1,4 @@
-var path = require('path')
-    , koa = require('koa')
+var koa = require('koa')
     , serve = require('koa-static')
     , mount = require('koa-mount')
 

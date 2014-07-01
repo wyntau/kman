@@ -44,31 +44,20 @@ module.exports = (grunt)->
                     'compass:server'
                     'autoprefixer'
                 ]
-            server:
+            nodemon:
                 files: [
                     '.nodemon'
                 ]
-                tasks: [
-                    'newer:jshint:server'
-                ]
                 options:
                     livereload: true
-            clientTest:
+            clientSpecs:
                 files: [
                     'test/client/spec/{,*/}*.js'
                 ]
                 tasks: [
-                    'newer:jshint:clientTest'
-                    'client_unit'
-                    'client_e2e'
-                ]
-            serverTest:
-                files: [
-                    'test/server/spec/**/*.js'
-                ]
-                task: [
-                    'newer:jshint:serverTest'
-                    'server_unit'
+                    'newer:jshint:clientSpecs'
+                    'unit'
+                    'e2e'
                 ]
             gruntfile:
                 files: [
@@ -117,23 +106,11 @@ module.exports = (grunt)->
                 src: [
                     'client/scripts/**/*.js'
                 ]
-            server:
-                options:
-                    jshintrc: 'test/server/.jshintrc'
-                src: [
-                    'server/**/*.js'
-                ]
-            clientTest:
+            clientSpecs:
                 options:
                     jshintrc: 'test/client/.jshintrc'
                 src: [
                     'test/client/spec/**/*.js'
-                ]
-            serverTest:
-                options:
-                    jshintrc: 'test/server/.jshintrc'
-                src: [
-                    'test/server/spec/**/*.js'
                 ]
 
         clean:
@@ -394,4 +371,7 @@ module.exports = (grunt)->
         'protractor'
     ]
 
-    @registerTask 'server_unit', []
+    @registerTask 'default', [
+        'jshint'
+        'build'
+    ]

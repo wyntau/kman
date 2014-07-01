@@ -10,7 +10,7 @@ function authorize(passthrough){
         , debug: debug
         , passthrough: passthrough || false
     });
-};
+}
 
 module.exports = authorize();
 module.exports.authorize = authorize;
