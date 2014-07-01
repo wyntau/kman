@@ -48,13 +48,19 @@ module.exports = (grunt)->
                 ]
                 options:
                     livereload: true
-            jsTest:
+            clientTest:
                 files: [
                     'test/client/spec/{,*/}*.js'
                 ]
                 tasks: [
-                    'newer:jshint:test'
-                    'karma'
+                    'newer:jshint:clientTest'
+                ]
+            serverTest:
+                files: [
+                    'test/server/spec/**/*.js'
+                ]
+                task: [
+                    'newer:jshint:serverTest'
                 ]
             gruntfile:
                 files: [
@@ -87,7 +93,7 @@ module.exports = (grunt)->
                             , 2000 # 时间太短的话, server还没启动完毕, 浏览器就刷新了
 
         concurrent:
-            tasks: [
+            dev: [
                 'nodemon'
                 'watch'
             ]
@@ -102,11 +108,17 @@ module.exports = (grunt)->
                 src: [
                     'client/scripts/**/*.js'
                 ]
-            test:
+            clientTest:
                 options:
                     jshintrc: 'test/client/.jshintrc'
                 src: [
                     'test/client/spec/**/*.js'
+                ]
+            serverTest:
+                options:
+                    jshintrc: 'test/server/.jshintrc'
+                src: [
+                    'test/server/spec/**/*.js'
                 ]
 
         clean:
@@ -298,11 +310,6 @@ module.exports = (grunt)->
                 src: 'bower_components/**/*'
                 dest: 'dist/client'
 
-        karma:
-            unit:
-                configFile: 'test/client/karma.conf.js'
-                singRun: true
-
         compress:
             dist:
                 options:
@@ -344,4 +351,3 @@ module.exports = (grunt)->
         'compass:server'
         'concurrent'
     ]
-
