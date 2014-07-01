@@ -20,12 +20,13 @@ angular.module('kman')
     }
 
     function addComment(newComment){
+        /* jshint camelcase: false */
         var postId = newComment.belong_to;
         var posts, post;
         if((posts = $scope.posts.filter(function(post){
             return post._id === postId;
         })).length){
-            var post = posts[0];
+            post = posts[0];
             if(!post.comments.some(function(comment){
                 return comment._id === newComment._id;
             })){
@@ -56,6 +57,7 @@ angular.module('kman')
         $scope.postBox.disabled = true;
         var post = new Post({
             content: $scope.postBox.content,
+            /* jshint camelcase: false */
             created_by: user._id
         });
 
@@ -84,7 +86,9 @@ angular.module('kman')
 
         var comment = new Comment({
             content: post.commentBox.content,
+            /* jshint camelcase: false */
             created_by: user._id,
+            /* jshint camelcase: false */
             belong_to: post._id
         });
 

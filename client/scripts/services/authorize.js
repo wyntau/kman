@@ -9,7 +9,7 @@ angular.module('kman')
 
     exports.getToken = function(){
         return localStorageService.get('token');
-    }
+    };
 
     exports.isAuthorized = function(){
         var deferred = $q.defer();
@@ -26,6 +26,6 @@ angular.module('kman')
             });
         }
         return deferred.promise;
-    }
+    };
     return exports;
 }]);

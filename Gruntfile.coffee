@@ -17,7 +17,9 @@ module.exports = (grunt)->
                     'client/scripts/**/*.js'
                 ]
                 tasks: [
-                    'newer:jshint:all'
+                    'newer:jshint:client'
+                    'client_unit'
+                    'client_e2e'
                 ]
                 options:
                     livereload: true
@@ -46,6 +48,9 @@ module.exports = (grunt)->
                 files: [
                     '.nodemon'
                 ]
+                tasks: [
+                    'newer:jshint:server'
+                ]
                 options:
                     livereload: true
             clientTest:
@@ -54,6 +59,8 @@ module.exports = (grunt)->
                 ]
                 tasks: [
                     'newer:jshint:clientTest'
+                    'client_unit'
+                    'client_e2e'
                 ]
             serverTest:
                 files: [
@@ -61,6 +68,7 @@ module.exports = (grunt)->
                 ]
                 task: [
                     'newer:jshint:serverTest'
+                    'server_unit'
                 ]
             gruntfile:
                 files: [
@@ -102,11 +110,18 @@ module.exports = (grunt)->
 
         jshint:
             options:
-                jshintrc: '.jshintrc'
                 reporter: stylish
-            all:
+            client:
+                options:
+                    jshintrc: 'test/client/.jshintrc'
                 src: [
                     'client/scripts/**/*.js'
+                ]
+            server:
+                options:
+                    jshintrc: 'test/server/.jshintrc'
+                src: [
+                    'server/**/*.js'
                 ]
             clientTest:
                 options:
@@ -141,6 +156,7 @@ module.exports = (grunt)->
                 ]
                 exclude: [
                     'bootstrap-social'
+                    'angular-mocks'
                 ]
                 fileTypes:
                     html:
@@ -327,6 +343,23 @@ module.exports = (grunt)->
                     stdout: true
                 command: "#{if platform ==  'darwin' then 'md5' else 'md5sum'} zips/<%= pkg.name %>-V<%= pkg.version %>.zip"
 
+        karma:
+            options:
+                configFile: 'test/client/karma.conf.js'
+            main: {}
+
+        protractor_webdriver:
+            main:
+                options:
+                    path: 'node_modules/protractor/bin/'
+                    command: 'webdriver-manager start'
+
+        protractor:
+            options:
+                configFile: 'test/client/e2e.conf.js'
+                noColor: false
+            main: {}
+
     @registerTask 'build', [
         'clean'
         'wiredep'
@@ -351,3 +384,14 @@ module.exports = (grunt)->
         'compass:server'
         'concurrent'
     ]
+
+    @registerTask 'client_unit', [
+        'karma'
+    ]
+
+    @registerTask 'client_e2e', [
+        'protractor_webdriver'
+        'protractor'
+    ]
+
+    @registerTask 'server_unit', []

@@ -29,22 +29,13 @@ In addition, __Linux__ or __Mac__ is optional but recommended, because __Linux__
 
 2. Test
 
-    - Frontend e2e test
-        1. start app server if your server was not running
+    - Frontend e2e test. (Note: Before test, the app server should be running)
 
-                npm run server
-
-        2. Start selenium server
-
-                npm run seleniem
-
-        3. run e2e specs:
-
-                npm run protractor
+            grunt client_e2e
 
     - Frontend unit test
 
-            npm run karma
+            grunt client_unit
 
 ### For Deploy
 

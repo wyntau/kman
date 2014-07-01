@@ -1,5 +1,4 @@
 'use strict';
-
 angular.module('kman', [
     'ui.router',
     'monospaced.elastic',
@@ -9,7 +8,7 @@ angular.module('kman', [
     'btford.socket-io',
     'ngAnimate'
 ])
-.config(['$locationProvider', '$stateProvider', '$urlRouterProvider', '$httpProvider', function($locationProvider, $stateProvider, $urlRouterProvider, $httpProvider, localStorageServiceProvider){
+.config(['$locationProvider', '$stateProvider', '$urlRouterProvider', '$httpProvider', function($locationProvider, $stateProvider, $urlRouterProvider, $httpProvider){
     $locationProvider.html5Mode(true);
 
     $stateProvider
@@ -52,7 +51,7 @@ angular.module('kman', [
         $window.location.replace('/signin.html');
         return;
     }
-    var common = $rootScope.common = $rootScope.common || {
+    $rootScope.common = $rootScope.common || {
         active: {},
         user: user,
         logout: function(){
@@ -65,12 +64,12 @@ angular.module('kman', [
         clearDatabase: function(){
             var self = this;
             $http.post('/debug/cleardatabase').then(function(){
-                console.log('post success');
                 self.logout();
             });
         }
     };
 
+    /* jshint unused: false */
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
         $rootScope.common.title = toState.data.title;
 
@@ -78,6 +77,7 @@ angular.module('kman', [
         $rootScope.common.active[toState.data.ctrl] = 'active';
     });
 
+    /* jshit unused: false */
     $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error){
         event.preventDefault();
         if(error.authorized === false){
