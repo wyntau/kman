@@ -8,7 +8,9 @@ var fs = require('fs')
 module.exports = function(app){
     if(fs.existsSync(resourcesPath)){
         fs.readdirSync(resourcesPath).forEach(function(file){
-
+            if(/^\./.test(file)){
+                return;
+            }
             var resource = require(path.join(resourcesPath, file));
 
             if(!resource.isPrivate){
