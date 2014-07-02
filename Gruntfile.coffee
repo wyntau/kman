@@ -133,7 +133,6 @@ module.exports = (grunt)->
                 ]
                 exclude: [
                     'bootstrap-social'
-                    'angular-mocks'
                 ]
                 fileTypes:
                     html:

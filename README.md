@@ -29,11 +29,11 @@ In addition, __Linux__ or __Mac__ is optional but recommended, because __Linux__
 
 2. Test
 
-    - Frontend e2e test. (Note: Before test, the app server should be running)
+    - Front-end e2e test. (Note: Before this test, the app server should be running)
 
             grunt client_e2e
 
-    - Frontend unit test
+    - Front-end unit test
 
             grunt client_unit
 
