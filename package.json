@@ -82,7 +82,6 @@
     "grunt-ngmin": "0.0.3",
     "grunt-nodemon": "^0.2.1",
     "grunt-protractor-runner": "^1.0.0",
-    "grunt-protractor-webdriver": "^0.1.8",
     "grunt-shell": "^0.7.0",
     "grunt-usemin": "^2.3.0",
     "grunt-wiredep": "^1.8.0",

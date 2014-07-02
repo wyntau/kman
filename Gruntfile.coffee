@@ -324,12 +324,6 @@ module.exports = (grunt)->
                 configFile: 'test/client/karma.conf.js'
             main: {}
 
-        protractor_webdriver:
-            main:
-                options:
-                    path: 'node_modules/protractor/bin/'
-                    command: 'webdriver-manager start'
-
         protractor:
             options:
                 configFile: 'test/client/e2e.conf.js'
@@ -366,7 +360,6 @@ module.exports = (grunt)->
     ]
 
     @registerTask 'client_e2e', [
-        'protractor_webdriver'
         'protractor'
     ]
 
