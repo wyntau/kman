@@ -5,7 +5,7 @@ exports.config = {
     chromeDriver: '../../node_modules/protractor/selenium/chromedriver',
     framework: 'mocha',
     specs: [
-        'e2e/*.spec.js'
+        'e2e/spec/**/*.js'
     ],
     mochaOpts: {
         ui: 'bdd',
