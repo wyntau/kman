@@ -8,10 +8,22 @@ chai.use(chaiAsPromised);
 
 describe('KMAN app', function() {
 
-  browser.get('/');
+    beforeEach(function(){
+        browser.get('/');
+    });
 
-  it('should automatically redirect to /signin.html when user is not authenticated', function() {
-    expect(browser.getLocationAbsUrl()).to.eventually.match(/\/signin.html$/);
-  });
+    it('should automatically redirect to /signin.html when user is not authenticated', function() {
+        expect(browser.getLocationAbsUrl()).to.eventually.match(/\/signin.html$/);
+    });
+
+    it('should signin to / when send email and password', function() {
+        element(by.buttonText('Sign In')).click();
+        expect(browser.getLocationAbsUrl()).to.eventually.match(/\/$/);
+    });
+
+    it('should get /profile page after login', function(){
+        browser.get('/profile');
+        expect(browser.getLocationAbsUrl()).to.eventually.match(/\/profile$/);
+    });
 
 });
