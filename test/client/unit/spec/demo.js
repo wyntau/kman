@@ -1,8 +1,7 @@
 describe('demo suite', function() {
     beforeEach(function() {
-        module('LocalStorageModule');
-        module('localstorage-mock');
         module('kman');
+        module('localstorage-mock');
     });
 
     it('should return token and user success', inject(function(localStorageService) {
