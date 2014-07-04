@@ -24,7 +24,7 @@ module.exports = function(override){
                     new User({
                         email: 'admin@kmanjs.com'
                         , password: 'pass'
-                        , name: 'Kman Demo'
+                        , name: 'Kman'
                         , avatar: gravatar('admin@kmanjs.com')
                     })
                     , new User({
@@ -38,7 +38,7 @@ module.exports = function(override){
                 var posts = [
                     new Post({
                         createdBy: users[0]._id
-                        , content: 'Hi there! This is a sample post demonstrating a KMAN app. KMAN is a simple boilerplate for building full-stack JavaScript Web applications using Koa, AngularJS, and Node.js. It utilizes WebSockets to provide real-time communication between servers and clients. MongoDB is used for data persistence and Passport.js for social logins. There are also numerous Grunt tasks pre-bundled and configured to facilitate development and testing. You can open this site in multiple browser tabs and post something to see how real-time communication works. You can also browse the project’s GitHub page to start building KMAN apps yourself.'
+                        , content: '这是KMAN的示例程序. KMAN后端使用Koa.js + MongoDB(mongoose) + Node.js, 前端使用Angular.js. socket.io负责完成多个客户端与服务端的实时通信, passport.js负责多个第三方登录的授权认证. 你可以打开多个浏览器窗口, 在其中一个窗口中发表一段文字或者一条评论, 在另一个窗口中就可以看到相同的内容出现. KMAN同时提供了预先设定好的Grunt任务, 可以实时刷新浏览器查看修改过的内容, 并能够快速进行单元(unit)测试, 端对端(e2e)测试, 打包, 只需一个grunt指令即可完成. 具体内容可以打开页面下文的Github链接进行查看.'
                     })
                 ];
 
@@ -46,12 +46,12 @@ module.exports = function(override){
                     new Comment({
                         createdBy: users[1]._id
                         , belongTo: posts[0]._id
-                        , content: 'Also remember that, if you can read this, you are within range of Chuck!'
+                        , content: '记得star一下~~'
                     })
                     , new Comment({
                         createdBy: users[0]._id
                         , belongTo: posts[0]._id
-                        , content: 'Ow yeah!'
+                        , content: '32个赞~~'
                     })
                 ];
 
