@@ -302,6 +302,12 @@ module.exports = (grunt)->
                 src: 'bower_components/**/*'
                 dest: 'dist/client'
 
+            nginx:
+                expand: true
+                cwd: '.'
+                src: 'nginx/**/*'
+                dest: 'dist'
+
         compress:
             dist:
                 options:

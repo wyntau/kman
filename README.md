@@ -42,5 +42,7 @@ In addition, __Linux__ or __Mac__ is optional but recommended, because __Linux__
     npm install --production
     npm start
 
+You can see `nginx/kman.conf` for nginx setting for <http://kmanjs.com>
+
 ### LICENSE
 MIT
