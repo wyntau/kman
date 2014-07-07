@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
     , Schema = mongoose.Schema
     ;
 
-var UserScheam = Schema({
+var UserSchema = Schema({
     email: String
     , platformId: String
     , platform: String
@@ -12,11 +12,11 @@ var UserScheam = Schema({
     , createdAt: Date
 });
 
-UserScheam.pre('save', function(next, done){
+UserSchema.pre('save', function(next, done){
     if(this.isNew){
         this.createdAt = new Date();
     }
     next();
 });
 
-module.exports = mongoose.model('User', UserScheam, 'users');
+module.exports = mongoose.model('User', UserSchema, 'users');
