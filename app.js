@@ -20,11 +20,13 @@ var http = require('http')
 
     ;
 
-exports.init = function(){
-    mongoose.connect(config.mongo.url);
-    mongoseed()
-    .then(function(){
-        app
+// connect to mongoDB
+mongoose.connect(config.mongo.url);
+// prepare mongoseed
+mongoseed()
+.then(function(){
+    // prepare koa middlewares
+    app
         .use(favi())
         .use(logger())
         .use(minifier({
@@ -36,16 +38,12 @@ exports.init = function(){
         .use(mount(renderApp))
         ;
 
-        server = http.Server(app.callback());
-        socket
-        .init(server)
-        .listen(config.app.port);
+    // create http server instance for socket.io
+    server = http.Server(app.callback());
+    // init socket.io and start server
+    socket
+    .init(server)
+    .listen(config.app.port);
 
-        console.log('%s is listening port %d', pkg.name, config.app.port);
-    });
-};
-
-if(!module.parent){
-    exports.init();
-}
-
+    console.log('%s is listening port %d', pkg.name, config.app.port);
+});
