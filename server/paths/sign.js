@@ -24,7 +24,8 @@ module.exports = {
         }).exec();
 
         if(!user){
-            this.throw(401, 'Incorrect e-mail address or password.');
+            this.status = 401;
+            this.body = 'Incorrect e-mail address or password.';
         }else{
 
             var token = sign(user, {
