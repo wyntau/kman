@@ -1,6 +1,6 @@
 var Resource = require('koa-resource-router')
     , User = require('../models/user')
-    , Promise = requirer('bluebird')
+    , Promise = require('bluebird')
     ;
 
 module.exports = new Resource('users', {
