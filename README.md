@@ -3,6 +3,13 @@
 
 A starting point for writing AngularJS apps backed by a Koa-powered node.js server.
 
+KMAN based on [koan](https://github.com/soygul/koan), but is different from koan.
+
+- KMAN has more pre-defined grunt tasks for development(watch, livereload) and deploy(compile, build, concat, uglify, compress, md5)
+- KMAN supports using sass
+- KMAN supports using socket.io
+- KMAN supports using high level mongoose
+
 ### Requirements
 1. MongoDB
 2. node >= 0.11.9
