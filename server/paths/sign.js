@@ -38,8 +38,8 @@ module.exports = {
             };
         }
     }
-    , 'GET /signin/facebook': passport.authenticate('facebook')
-    , 'GET /signin/facebook/callback': [function *(next){
+    , 'GET,POST /signin/facebook': passport.authenticate('facebook')
+    , 'GET,POST /signin/facebook/callback': [function *(next){
         var ctx = this;
         yield passport.authenticate('facebook', {
             failureRedirect: '/signin.html'
@@ -90,8 +90,8 @@ module.exports = {
             })
         });
     }]
-    , 'GET /signin/google': passport.authenticate('google', {scope: 'profile'})
-    , 'GET /signin/google/callback': [function *(next){
+    , 'GET,POST /signin/google': passport.authenticate('google', {scope: 'profile'})
+    , 'GET,POST /signin/google/callback': [function *(next){
         var ctx = this;
         yield passport.authenticate('google', {
             failureRedirect: '/signin.html'
@@ -140,8 +140,8 @@ module.exports = {
             })
         });
     }]
-    , 'GET /signin/weibo': passport.authenticate('weibo')
-    , 'GET /signin/weibo/callback': [function *(next){
+    , 'GET,POST /signin/weibo': passport.authenticate('weibo')
+    , 'GET,POST /signin/weibo/callback': [function *(next){
         var ctx = this;
         yield passport.authenticate('weibo', {
             failureRedirect: '/signin.html'
@@ -190,8 +190,8 @@ module.exports = {
             })
         });
     }]
-    , 'GET /signin/qq': passport.authenticate('qq')
-    , 'GET /signin/qq/callback': [function *(next){
+    , 'GET,POST /signin/qq': passport.authenticate('qq')
+    , 'GET,POST /signin/qq/callback': [function *(next){
         var ctx = this;
         yield passport.authenticate('qq', function *(err, user, info){
             ctx.user = user;
