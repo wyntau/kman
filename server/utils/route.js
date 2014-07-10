@@ -5,6 +5,7 @@ var fs = require('fs')
     , is = require('jistype')
     , noop = require('koa-noop')
     , except = require('except')
+    , readDir = require('readdir')
 
     ;
 
@@ -34,10 +35,8 @@ module.exports = function(app, routeType){
 
 function routeResource(app, dirPath){
     if(fs.existsSync(dirPath)){
-        fs.readdirSync(dirPath).forEach(function(file){
-            if(/^\./.test(file)){
-                return;
-            }
+
+        readDir.readSync(dirPath, ['**.js']).forEach(function(file){
             var resource = require(path.join(dirPath, file));
 
             if(!resource.isPrivate){
@@ -51,10 +50,7 @@ function routeResource(app, dirPath){
 
 function routePath(app, dirPath){
     if(fs.existsSync(dirPath)){
-        fs.readdirSync(dirPath).forEach(function(file){
-            if(/^\./.test(file)){
-                return;
-            }
+        readDir.readSync(dirPath, ['**.js']).forEach(function(file){
             var route = require(path.join(dirPath, file));
 
             if(!route.isPrivate){

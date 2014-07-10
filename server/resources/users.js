@@ -1,10 +1,11 @@
-var Resource = require('koa-resource-router')
-    , Promise = require('bluebird')
+var Promise = require('bluebird')
 
     , User = require('../models/user')
+
+    , resource = require('../utils/resource')
     ;
 
-module.exports = new Resource('users', {
+module.exports = resource(__filename, {
     index: function *(next){}
     , show: function *(next){}
     , create: function *(next){

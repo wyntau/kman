@@ -1,13 +1,14 @@
-var Resource = require('koa-resource-router')
-    , Promise = require('bluebird')
+var Promise = require('bluebird')
 
     , Post = require('../models/post')
     , User = require('../models/user')
     , authorize = require('../middles/authorize')
     , socket = require('../socket')
+
+    , resource = require('../utils/resource')
     ;
 
-module.exports = new Resource('posts', authorize, {
+module.exports = resource(__filename, authorize, {
     index: function *(next){
         var posts = yield Post.find().limit(15).sort({
             createdAt: -1

@@ -1,14 +1,14 @@
-var Resource = require('koa-resource-router')
-    , Promise = require('bluebird')
+var Promise = require('bluebird')
 
-    , Comment = require('../models/comment')
-    , Post = require('../models/post')
-    , postResource = require('./post')
-    , authorize = require('../middles/authorize')
-    , socket = require('../socket')
+    , Comment = require('../../models/comment')
+    , Post = require('../../models/post')
+    , authorize = require('../../middles/authorize')
+    , socket = require('../../socket')
+
+    , resource = require('../../utils/resource')
     ;
 
-var commentResource = new Resource('comments', {
+module.exports = resource(__filename, {
     create: [authorize, function *(next){
         var body = this.request.body
             , postId = this.params.post
@@ -48,7 +48,3 @@ var commentResource = new Resource('comments', {
         this.body = comment;
     }]
 });
-
-postResource.add(commentResource);
-
-module.exports = commentResource;
