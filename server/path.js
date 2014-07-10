@@ -1,13 +1,10 @@
-var path = require('path')
-
-    , koa = require('koa')
+var koa = require('koa')
     , router = require('koa-router')
     , bodyParser = require('koa-bodyparser')
-    , spa = require('koa-spa')
+    , validator = require('koa-validator')
     , views = require('koa-views')
 
-    , config = require('../config')
-    , routePath = require('./utils/routePath')
+    , route = require('./utils/route')
     , passport = require('./pre/passport')
 
     , app = koa()
@@ -15,17 +12,12 @@ var path = require('path')
 
 module.exports = app
     .use(bodyParser())
+    .use(validator())
     .use(views('./views', {
         default: 'swig'
         , cache: 'memory'
     }))
     .use(passport.initialize())
     .use(router(app))
-    .use(routePath(app))
-    .use(spa(path.join(config.root, 'client'), {
-        index: 'index.html'
-        , static: {
-            gzip: true
-        }
-    }))
+    .use(route(app, 'path'))
     ;
