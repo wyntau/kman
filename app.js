@@ -41,6 +41,11 @@ mongoseed()
         // style API.
         // All other paths will be treated as pages and asserts paths.
         // Just like below
+        // So, finally we have four subApps for different usages
+        // - resourcesApp, RESTful style API
+        // - apisApp, normal style API
+        // - pathsApp, page paths that can be rendered by a template
+        // - assertsApp, serve all static files(css, js, images, html, fonts, etc.)
         .use(mount('/resource', resourcesApp))
         .use(mount('/api', apisApp))
         .use(mount(pathsApp))
