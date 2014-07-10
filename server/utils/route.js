@@ -14,6 +14,7 @@ module.exports = function(app, routeType){
         , dirName
         ;
 
+    // routeType => dirname, dirname is plural forms  of routeType
     dirName = routeType + 's';
 
     dirPath = path.resolve(__dirname, '..', dirName);
@@ -23,7 +24,7 @@ module.exports = function(app, routeType){
     }else if(routeType === 'api' || routeType === 'path'){
         routeMethod = routePath;
     }else{
-        console.error('routeType error:', routeType, 'select one from `resource`, `api` or `path`');
+        throw new Error('routeType error: ' + routeType + '. select one from `resource`, `api` or `path`')
         process.exit(1);
     }
 
@@ -103,6 +104,7 @@ function dispath(app, routes) {
                     break;
                 default:
                     throw new Error('Invalid HTTP method specified for route ' + path);
+                    process.exit(1);
                     break;
             }
         });
