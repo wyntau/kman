@@ -3,6 +3,7 @@ var passport = require('koa-passport')
     , GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
     , WeiboStrategy = require('passport-weibo').Strategy
     , QQStrategy = require('passport-qq').Strategy
+
     , config = require('../../config')
     ;
 

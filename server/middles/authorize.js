@@ -1,5 +1,7 @@
 var jwt = require('koa-jwt')
+
     , config = require('../../config')
+
     , secret = config.secret
     , debug = config.env === 'development'
     ;

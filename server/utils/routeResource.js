@@ -1,5 +1,6 @@
 var fs = require('fs')
     , path = require('path')
+
     , noop = require('koa-noop')
 
     , resourcesPath = path.resolve(__dirname, '../resources')

@@ -1,10 +1,11 @@
-var User = require('../models/user')
-    , sign = require('../middles/authorize').sign
-    , only = require('only')
+var only = require('only')
     , request = require('co-request')
     , gravatar = require('gravatar').url
     , Promise = require('bluebird')
+
+    , sign = require('../middles/authorize').sign
     , passport = require('../pre/passport')
+    , User = require('../models/user')
 
     ;
 

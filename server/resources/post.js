@@ -1,8 +1,9 @@
 var Resource = require('koa-resource-router')
+    , Promise = require('bluebird')
+
     , Post = require('../models/post')
     , User = require('../models/user')
     , authorize = require('../middles/authorize')
-    , Promise = require('bluebird')
     , socket = require('../socket')
     ;
 

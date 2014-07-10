@@ -1,4 +1,5 @@
 var http = require('http')
+
     , koa = require('koa')
     , favi = require('koa-favi')
     , logger = require('koa-logger')
@@ -7,7 +8,6 @@ var http = require('http')
     , mongoose = require('mongoose')
 
     , pkg = require('./package.json')
-
     , mongoseed = require('./server/pre/mongoseed')
     , assertsApp = require('./server/asserts')
     , renderApp = require('./server/render')

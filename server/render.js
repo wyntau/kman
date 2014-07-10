@@ -1,4 +1,5 @@
 var path = require('path')
+
     , koa = require('koa')
     , router = require('koa-router')
     , bodyParser = require('koa-bodyparser')
@@ -7,7 +8,6 @@ var path = require('path')
 
     , config = require('../config')
     , routePath = require('./utils/routePath')
-
     , passport = require('./pre/passport')
 
     , app = koa()

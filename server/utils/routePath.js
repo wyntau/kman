@@ -1,6 +1,7 @@
 var fs = require('fs')
-    , is = require('jistype')
     , path = require('path')
+
+    , is = require('jistype')
     , noop = require('koa-noop')
     , except = require('except')
 

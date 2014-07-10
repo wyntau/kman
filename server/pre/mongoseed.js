@@ -1,9 +1,10 @@
 var Promise = require('bluebird')
     , _ = require('lodash')
+    , gravatar = require('gravatar').url
+
     , User = require('../models/user')
     , Post = require('../models/post')
     , Comment = require('../models/comment')
-    , gravatar = require('gravatar').url
     ;
 
 module.exports = function(override){
