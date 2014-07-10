@@ -40,10 +40,10 @@ mongoseed()
 
     // create http server instance for socket.io
     server = http.Server(app.callback());
-    // init socket.io and start server
-    socket
-    .init(server)
-    .listen(config.app.port);
+    // init socket.io
+    socket.init(server);
+    // start server
+    server.listen(config.app.port);
 
     console.log('%s is listening port %d', pkg.name, config.app.port);
 });
