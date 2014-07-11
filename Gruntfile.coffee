@@ -138,7 +138,7 @@ module.exports = (grunt)->
                     html:
                         replace:
                             js: '<script src="/{{filePath}}"></script>'
-                            css:'<link rel="stylesheet" href="/{{filePath}}" />'
+                            css: '<link rel="stylesheet" href="/{{filePath}}" />'
 
         autoprefixer:
             options:
