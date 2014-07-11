@@ -45,7 +45,7 @@ angular.module('kman', [
 
     $httpProvider.interceptors.push('HttpInterceptor');
 }])
-.run(['$rootScope', '$window', '$http', 'Socket', 'Authorize', function($rootScope, $window, $http, Socket, Authorize){
+.run(['$rootScope', '$window', '$http', 'Socket', 'Authorize', 'localStorageService', function($rootScope, $window, $http, Socket, Authorize, localStorageService){
     var user = Authorize.getUser();
     if(!user){
         $window.location.replace('/signin.html');
@@ -55,10 +55,8 @@ angular.module('kman', [
         active: {},
         user: user,
         logout: function(){
-            delete $window.sessionStorage.token;
-            delete $window.sessionStorage.user;
-            delete $window.localStorage.token;
-            delete $window.localStorage.user;
+            localStorageService.remove('token');
+            localStorageService.remove('user');
             $window.location.replace('/signin.html');
         },
         clearDatabase: function(){
