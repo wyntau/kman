@@ -2,6 +2,7 @@ fs = require 'fs'
 stylish = require 'jshint-stylish'
 open = require 'open'
 platform = require('os').platform()
+config = require './config'
 
 module.exports = (grunt)->
 
@@ -82,7 +83,7 @@ module.exports = (grunt)->
                         nodemon.on 'config:update', ->
                             console.log 'The default browser will open, wait a moment please.'
                             setTimeout ->
-                                open 'http://localhost:3000'
+                                open config.domain
                             , 2000 # 时间太短的话, server还没启动完毕, 浏览器就打开了
                         nodemon.on 'restart', ->
                             setTimeout ->

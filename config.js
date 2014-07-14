@@ -4,6 +4,7 @@ var path = require('path')
     , root = __dirname
 
     , domain = 'http://kmanjs.com'
+    , domainTest = 'http://localhost:3000'
     , secret = 'kmansecret'
 
     , googleCallbackPath = '/signin/google/callback'
@@ -46,7 +47,8 @@ var baseConfig = {
 
 var envConfig = {
     development: {
-        app: {
+        domain: domainTest
+        , app: {
             port: 3000
         }
         , asserts: {
@@ -61,16 +63,16 @@ var envConfig = {
         }
         , oauth: {
             facebook: {
-                callbackURL: 'http://localhost:3000' + facebookCallbackPath
+                callbackURL: domainTest + facebookCallbackPath
             }
             , google: {
-                callbackURL: 'http://localhost:3000' + googleCallbackPath
+                callbackURL: domainTest + googleCallbackPath
             }
             , weibo: {
-                callbackURL: 'http://localhost:3000' + weiboCallbackPath
+                callbackURL: domainTest + weiboCallbackPath
             }
             , qq: {
-                callbackURL: 'http://localhost:3000' + qqCallbackPath
+                callbackURL: domainTest + qqCallbackPath
             }
         }
     }
