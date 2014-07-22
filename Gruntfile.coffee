@@ -226,7 +226,9 @@ module.exports = (grunt)->
                 ]
                 dest: 'dist/client'
 
-        ngmin:
+        ngAnnotate:
+            options:
+                singleQuotes: true
             dist:
                 expand: true
                 cwd: 'client/.tmp/concat/scripts'
@@ -345,7 +347,7 @@ module.exports = (grunt)->
         'autoprefixer'
         'ngtemplates'
         'concat'
-        'ngmin'
+        'ngAnnotate'
         'copy'
         'cssmin'
         'uglify'
