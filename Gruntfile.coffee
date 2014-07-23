@@ -1,8 +1,11 @@
 fs = require 'fs'
+
 stylish = require 'jshint-stylish'
 open = require 'open'
-platform = require('os').platform()
+
 config = require './config'
+
+platform = process.platform
 
 module.exports = (grunt)->
 
