@@ -11,7 +11,7 @@ var fs = require('fs')
 
 module.exports = function(app, routeType){
     var dirPath
-        , routeMethod
+        , dispatchMethod
         , dirName
         ;
 
@@ -21,19 +21,19 @@ module.exports = function(app, routeType){
     dirPath = path.resolve(__dirname, '..', dirName);
 
     if(routeType === 'resource'){
-        routeMethod = routeResource;
+        dispatchMethod = dispatchResource;
     }else if(routeType === 'api' || routeType === 'path'){
-        routeMethod = routePath;
+        dispatchMethod = dispatchPath;
     }else{
         throw new Error('routeType error: ' + routeType + '. select one from `resource`, `api` or `path`')
         process.exit(1);
     }
 
-    return routeMethod(app, dirPath);
+    return dispatchMethod(app, dirPath);
 };
 
 
-function routeResource(app, dirPath){
+function dispatchResource(app, dirPath){
     if(fs.existsSync(dirPath)){
 
         readDir.readSync(dirPath, ['**.js'], readDir.ABSOLUTE_PATHS).forEach(function(file){
@@ -47,7 +47,7 @@ function routeResource(app, dirPath){
     return noop;
 };
 
-function routePath(app, dirPath){
+function dispatchPath(app, dirPath){
     if(fs.existsSync(dirPath)){
         readDir.readSync(dirPath, ['*.js', '*/'], readDir.INCLUDE_DIRECTORIES + readDir.ABSOLUTE_PATHS).forEach(function(file){
             // remove all dir trailing slash
@@ -55,7 +55,7 @@ function routePath(app, dirPath){
             var route = require(file);
 
             if(!route.isPrivate){
-                dispath(app, except(route, 'isPrivate'));
+                dispatchRoute(app, except(route, 'isPrivate'));
             }
         });
     }
@@ -63,7 +63,7 @@ function routePath(app, dirPath){
     return noop;
 }
 
-function dispath(app, routes) {
+function dispatchRoute(app, routes) {
     // 将路由表的每一项附加到app上
     Object.keys(routes).forEach(function(key) {
         var args = routes[key]
