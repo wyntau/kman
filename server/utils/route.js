@@ -36,9 +36,8 @@ module.exports = function(app, routeType){
 function routeResource(app, dirPath){
     if(fs.existsSync(dirPath)){
 
-        readDir.readSync(dirPath, ['**.js']).forEach(function(file){
-            var resource = require(path.join(dirPath, file));
-
+        readDir.readSync(dirPath, ['**.js'], readDir.ABSOLUTE_PATHS).forEach(function(file){
+            var resource = require(file);
             if(!resource.isPrivate){
                 app.use(resource.middleware());
             }
@@ -50,8 +49,10 @@ function routeResource(app, dirPath){
 
 function routePath(app, dirPath){
     if(fs.existsSync(dirPath)){
-        readDir.readSync(dirPath, ['**.js']).forEach(function(file){
-            var route = require(path.join(dirPath, file));
+        readDir.readSync(dirPath, ['*.js', '*/'], readDir.INCLUDE_DIRECTORIES + readDir.ABSOLUTE_PATHS).forEach(function(file){
+            // remove all dir trailing slash
+            file = file.replace(/\/$/, '');
+            var route = require(file);
 
             if(!route.isPrivate){
                 dispath(app, except(route, 'isPrivate'));
