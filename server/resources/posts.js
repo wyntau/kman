@@ -5,10 +5,9 @@ var Promise = require('bluebird')
     , authorize = require('../middles/authorize')
     , socket = require('../socket')
 
-    , resource = require('../utils/resource')
     ;
 
-module.exports = resource(__filename, authorize, {
+module.exports = [authorize, {
     index: function *(next){
         var posts = yield Post.find().limit(15).sort({
             createdAt: -1
@@ -76,4 +75,4 @@ module.exports = resource(__filename, authorize, {
         this.status = 201;
         this.body = post;
     }
-});
+}];
