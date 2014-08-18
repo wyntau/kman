@@ -1,11 +1,17 @@
 var fs = require('fs')
     , path = require('path')
 
+    , Resource = require('koa-resource-router')
+    , _ = require('lodash')
     , noop = require('koa-noop')
     , is = require('jistype')
     , noop = require('koa-noop')
     , except = require('except')
     , readDir = require('readdir')
+
+    , resourcesDir = path.resolve(__dirname, '..', 'resources')
+
+    , resourceDict = {}
 
     ;
 
@@ -37,7 +43,7 @@ function dispatchResource(app, dirPath){
     if(fs.existsSync(dirPath)){
 
         readDir.readSync(dirPath, ['**.js'], readDir.ABSOLUTE_PATHS).forEach(function(file){
-            var resource = require(file);
+            var resource = getResource(file);
             if(!resource.isPrivate){
                 app.use(resource.middleware());
             }
@@ -46,6 +52,87 @@ function dispatchResource(app, dirPath){
 
     return noop;
 };
+
+function getResource(resourcePath){
+    // we have created the resource
+    if(resourceDict.hasOwnProperty(resourcePath)){
+        return resourceDict[resourcePath];
+    }
+
+    var resourceName
+        , resourceDir
+        , resource
+
+        , parentResourceName
+        , parentResourceDir
+        , parentResourcePath
+        , parentResource
+
+        , resourceRelative
+        , resourceChain
+
+        , isPrivate
+        , args
+        , obj
+
+        ;
+
+    resourceName = path.basename(resourcePath, '.js');
+    resourceDir = path.dirname(resourcePath);
+
+    resourceRelative = path.relative(resourcesDir, resourceDir);
+
+    if(resourceRelative){
+
+        resourceChain = resourceRelative.split(path.sep);
+        parentResourceName = resourceChain.pop();
+        parentResourceDir = path.join(resourcesDir, resourceChain.join(path.sep));
+        parentResourcePath = path.join(parentResourceDir, parentResourceName + '.js');
+
+        parentResource = getResource(parentResourcePath);
+    }
+
+    args = require(resourcePath);
+
+    if(is.isObject(args)){
+        args = [args];
+    }
+
+    if(is.isString(args[args.length - 1])){
+        // define option name
+        resourceName = args.pop();
+    }
+
+    // the last one is our defined object.
+    obj = args[args.length - 1];
+
+    if(obj.isPrivate){
+        isPrivate = true;
+        delete obj.isPrivate;
+    }
+
+    resource = createResource(_.flatten([resourceName, args]));
+
+    if(isPrivate){
+        resource.isPrivate = true;
+    }
+
+    if(parentResource){
+        parentResource.add(resource);
+    }
+
+    resourceDict[resourcePath] = resource;
+
+    return resource;
+}
+
+function createResource(args){
+    function R(){
+        return Resource.apply(this, args);
+    }
+    R.prototype = Resource.prototype;
+    return new R();
+}
 
 function dispatchPath(app, dirPath){
     if(fs.existsSync(dirPath)){

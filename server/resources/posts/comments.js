@@ -5,10 +5,9 @@ var Promise = require('bluebird')
     , authorize = require('../../middles/authorize')
     , socket = require('../../socket')
 
-    , resource = require('../../utils/resource')
     ;
 
-module.exports = resource(__filename, {
+module.exports = {
     create: [authorize, function *(next){
         var body = this.request.body
             , postId = this.params.post
@@ -47,4 +46,4 @@ module.exports = resource(__filename, {
         this.status = 201;
         this.body = comment;
     }]
-});
+};

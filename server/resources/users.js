@@ -2,10 +2,9 @@ var Promise = require('bluebird')
 
     , User = require('../models/user')
 
-    , resource = require('../utils/resource')
     ;
 
-module.exports = resource(__filename, {
+module.exports = {
     index: function *(next){}
     , show: function *(next){}
     , create: function *(next){
@@ -16,4 +15,4 @@ module.exports = resource(__filename, {
         this.status = 201;
         this.body = user;
     }
-});
+};
