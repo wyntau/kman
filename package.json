@@ -15,16 +15,16 @@
     "Angular.js",
     "Node.js"
   ],
-  "author": "Jeremial",
+  "author": "Treri",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Jeremial/kman"
+    "url": "https://github.com/Treri/kman"
   },
   "bugs": {
-    "url": "https://github.com/Jeremial/kman/issues"
+    "url": "https://github.com/Treri/kman/issues"
   },
-  "homepage": "https://github.com/Jeremial/kman",
+  "homepage": "https://github.com/Treri/kman",
   "dependencies": {
     "bluebird": "^2.3.0",
     "co-request": "^0.2.0",

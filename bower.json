@@ -1,9 +1,9 @@
 {
   "name": "kman",
   "version": "0.0.1",
-  "homepage": "https://github.com/Jeremial/kman",
+  "homepage": "https://github.com/Treri/kman",
   "authors": [
-    "Jeremial <jeremial90@gmail.com>"
+    "Treri <treri.liu@gmail.com>"
   ],
   "description": "Koa + MongoDB + Angular.js + Node.js",
   "main": "app.js",
