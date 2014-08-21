@@ -71,9 +71,9 @@ function getResource(resourcePath){
         , resourceRelative
         , resourceChain
 
+        , resourceObject
         , isPrivate
         , args
-        , obj
 
         ;
 
@@ -104,11 +104,11 @@ function getResource(resourcePath){
     }
 
     // the last one is our defined object.
-    obj = args[args.length - 1];
+    resourceObject = args[args.length - 1];
 
-    if(obj.isPrivate){
+    if(resourceObject.isPrivate){
         isPrivate = true;
-        delete obj.isPrivate;
+        delete resourceObject.isPrivate;
     }
 
     resource = createResource(_.flatten([resourceName, args]));
