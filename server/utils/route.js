@@ -83,8 +83,8 @@ function getResource(resourcePath){
     resourceRelative = path.relative(resourcesDir, resourceDir);
 
     if(resourceRelative){
-
         resourceChain = resourceRelative.split(path.sep);
+
         parentResourceName = resourceChain.pop();
         parentResourceDir = path.join(resourcesDir, resourceChain.join(path.sep));
         parentResourcePath = path.join(parentResourceDir, parentResourceName + '.js');
