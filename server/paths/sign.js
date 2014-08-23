@@ -2,9 +2,9 @@ var only = require('only')
     , request = require('co-request')
     , gravatar = require('gravatar').url
     , Promise = require('bluebird')
+    , passport = require('koa-passport')
 
     , sign = require('../middles/authorize').sign
-    , passport = require('../pre/passport')
     , User = require('../models/user')
 
     ;

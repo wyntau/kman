@@ -8,7 +8,7 @@ var http = require('http')
     , mongoose = require('mongoose')
 
     , pkg = require('./package.json')
-    , mongoseed = require('./server/pre/mongoseed')
+    , prepare = require('./server/prepare')
     , assertsApp = require('./server/assert')
     , pathsApp = require('./server/path')
     , resourcesApp = require('./server/resource')
@@ -24,7 +24,7 @@ var http = require('http')
 // connect to mongoDB
 mongoose.connect(config.mongo.url);
 // prepare mongoseed
-mongoseed()
+prepare()
 .then(function(){
     // prepare koa middlewares
     app

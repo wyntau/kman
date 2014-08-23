@@ -3,9 +3,9 @@ var koa = require('koa')
     , bodyParser = require('koa-bodyparser')
     , validator = require('koa-validator')
     , views = require('koa-views')
+    , passport = require('koa-passport')
 
     , route = require('./utils/route')
-    , passport = require('./pre/passport')
 
     , app = koa()
     ;
