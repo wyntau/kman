@@ -29,10 +29,10 @@ module.exports = function(override){
                     , avatar: gravatar('admin@kmanjs.com')
                 })
                 , new User({
-                    email: 'jeremial@kmanjs.com'
+                    email: 'treri@kmanjs.com'
                     , password: 'pass'
-                    , name: 'Jeremial Lau'
-                    , avatar: gravatar('jeremial@kmanjs.com')
+                    , name: 'Treri Liu'
+                    , avatar: gravatar('treri.liu@gmail.com')
                 })
             ];
 
