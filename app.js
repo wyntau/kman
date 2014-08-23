@@ -5,7 +5,6 @@ var http = require('http')
     , logger = require('koa-logger')
     , mount = require('koa-mount')
     , minifier = require('koa-html-minifier')
-    , mongoose = require('mongoose')
 
     , pkg = require('./package.json')
     , prepare = require('./server/prepare')
@@ -21,9 +20,7 @@ var http = require('http')
 
     ;
 
-// connect to mongoDB
-mongoose.connect(config.mongo.url);
-// prepare mongoseed
+// complete prepare works
 prepare()
 .then(function(){
     // prepare koa middlewares

@@ -1,6 +1,5 @@
 var Promise = require('bluebird')
     , readDir = require('readdir')
-    , _ = require('lodash')
     ;
 
 module.exports = function(){
@@ -10,9 +9,7 @@ module.exports = function(){
         if(modPath == __filename){
             return;
         }
-
         modPath = modPath.replace(/\/$/, '');
-
         mods.push(require(modPath));
     });
 
