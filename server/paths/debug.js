@@ -1,4 +1,4 @@
-var mongoseed = require('../prepare/mongoseed')
+var mongoseed = require('../prepares/mongoseed')
     ;
 
 module.exports = {
