@@ -10,7 +10,6 @@ var http = require('http')
     , prepare = require('./server/prepare')
     , assertsApp = require('./server/assert')
     , pathsApp = require('./server/path')
-    , resourcesApp = require('./server/resource')
     , apisApp = require('./server/api')
     , socket = require('./server/socket')
     , config = require('./config')
@@ -43,8 +42,11 @@ prepare()
         // - apisApp, normal style API
         // - pathsApp, page paths that can be rendered by a template
         // - assertsApp, serve all static files(css, js, images, html, fonts, etc.)
-        .use(mount('/resource', resourcesApp))
+        // .use(mount('/resource', resourcesApp))
         .use(mount('/api', apisApp))
+        // Update 20140902
+        // We use koa-backend plugin to struct files. so we can have only one prefix
+        // to dispath apis and resources request. So comment resource prefix
         .use(mount(pathsApp))
         .use(mount(assertsApp))
         ;
