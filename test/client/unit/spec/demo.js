@@ -22,7 +22,7 @@ describe('demo suite', function() {
         var authorized = {
             authorized: true
         };
-        $httpBackend.when('GET', '/resource/posts').respond([{
+        $httpBackend.when('GET', '/api/posts').respond([{
             _id: '1',
             content: 'content',
             createdBy: 'author',
