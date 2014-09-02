@@ -1,11 +1,9 @@
 var koa = require('koa')
     , json = require('koa-json')
     , jsonp = require('koa-jsonp')
-    , router = require('koa-router')
+    , backend = require('koa-backend')
     , bodyParser = require('koa-bodyparser')
     , validator = require('koa-validator')
-
-    , route = require('./utils/route')
 
     , app = koa()
     ;
@@ -15,6 +13,5 @@ module.exports = app
     .use(jsonp())
     .use(bodyParser())
     .use(validator())
-    .use(router(app))
-    .use(route(app, 'api'))
+    .use(backend(app, __dirname + '/apis'))
     ;

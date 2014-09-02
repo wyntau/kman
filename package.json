@@ -33,6 +33,7 @@
     "gravatar": "^1.0.6",
     "jistype": "0.1.0",
     "koa": "^0.10.0",
+    "koa-backend": "*",
     "koa-bodyparser": "^1.0.1",
     "koa-favi": "^0.1.0",
     "koa-html-minifier": "^1.0.0",
