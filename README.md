@@ -32,7 +32,6 @@ In addition, __Linux__ or __Mac__ is optional but recommended, because __Linux__
     A livereload server was started by `grunt-contrib-watch` which will watch static files(css, sass, js, html) and server(via nodemon).
 
     So, if you want to refresh your browser when you changed specific files, maybe you should install the [browser extension](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions-).
-
 2. Test
 
     - Front-end e2e test. (Note: Before this test, the app server should be running, you can open another terminal, and run `node --harmony app.js`)
@@ -46,7 +45,6 @@ In addition, __Linux__ or __Mac__ is optional but recommended, because __Linux__
     - Server test
 
         Upcoming
-
 3. Build
 
         grunt build
