@@ -2,30 +2,28 @@
 
 angular.module('kman')
 .factory('Authorize', ['$q', 'localStorageService', function($q, localStorageService){
-    var exports = {};
-    exports.getUser = function(){
-        return localStorageService.get('user');
-    };
+    return {
+        getUser: function(){
+            return localStorageService.get('user');
+        },
+        getToken: function(){
+            return localStorageService.get('token');
+        },
+        isAuthorized: function(){
+            var deferred = $q.defer();
+            var user = exports.getUser();
+            var token = exports.getToken();
 
-    exports.getToken = function(){
-        return localStorageService.get('token');
-    };
-
-    exports.isAuthorized = function(){
-        var deferred = $q.defer();
-        var user = exports.getUser();
-        var token = exports.getToken();
-
-        if(user && token){
-            deferred.resolve({
-                authorized: true
-            });
-        }else{
-            deferred.reject({
-                authorized: false
-            });
+            if(user && token){
+                deferred.resolve({
+                    authorized: true
+                });
+            }else{
+                deferred.reject({
+                    authorized: false
+                });
+            }
+            return deferred.promise;
         }
-        return deferred.promise;
     };
-    return exports;
 }]);
